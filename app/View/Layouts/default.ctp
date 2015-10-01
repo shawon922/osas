@@ -68,8 +68,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-    <body class="hold-transition skin-blue layout-boxed sidebar-mini">
+<body class="hold-transition skin-blue layout-boxed sidebar-mini">
         <!-- Wrapper Start -->
         <div class="wrapper">
 
@@ -87,12 +86,12 @@
                 <?php echo $this->Session->flash(); ?>
 
                 <?php echo $this->fetch('content'); ?>
-              </div>
-        
+          </div>
+            <?php echo $this->element('footer'); ?>
           </div><!-- /.content-wrapper -->
 
             <?php 
-              echo $this->element('footer');
+              
 
               echo $this->element('control_sidebar'); 
 
