@@ -31,5 +31,45 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	//public $components = array('DebugKit.Toolbar');
+	public $components = array('Session', 'Email', 'RequestHandler', 'Cookie',
+			'Auth' => array(
+				'loginRedirect' => array('controller' => 'dashboards', 'action' => 'index'),
+				'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+				'authenticate' => array(
+					'Form' => array(
+						'scope' => array('User.status' => 1)
+					)
+				)
+			) /*'DebugKit.Toolbar'*/);
+	public $helpers = array(
+        'Html', 'Form', 'Session',
+        'Js' => array('Jquery'), 
+        'Time', 'Cache', 'Text'
+    );
+
+    public function beforeFilter()
+    {
+    	parent::beforeFilter();
+    	$this->Auth->allow(array('login', 'logout', 'add', 'forgotPassword'));
+    }
+
+
+    public function isAuthorized($user) {
+
+	    return true;
+	}
+
+
+    public function remove_all_cookies() 
+	{
+		if (isset($_SERVER['HTTP_COOKIE'])) {
+			$cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+			foreach($cookies as $cookie) {
+				$parts = explode('=', $cookie);
+				$name = trim($parts[0]);
+				setcookie($name, '', time()-1000);
+				setcookie($name, '', time()-1000, '/');
+			}
+		}
+	}
 }
