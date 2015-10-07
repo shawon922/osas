@@ -72,7 +72,7 @@ class AppController extends Controller {
 	    return true;
 	}
 
-
+4fabdf02e0d9dc342c107698a52c9029dd5904ec
     public function remove_all_cookies() 
 	{
 		if (isset($_SERVER['HTTP_COOKIE'])) {
