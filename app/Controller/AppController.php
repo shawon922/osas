@@ -53,10 +53,17 @@ class AppController extends Controller {
         'Time', 'Cache', 'Text'
     );
 
+    public $userInfo = 0;
+
     public function beforeFilter()
     {
     	parent::beforeFilter();
+    	$this->Session->write('USER_INFO', $this->Auth->user());
+    	$this->userInfo = $this->Session->read('USER_INFO');
+    	$userInfo = $this->userInfo;
     	$this->Auth->allow(array('login', 'logout', 'add', 'forgotPassword'));
+    	//pr($userInfo); die;
+    	$this->set(compact(array('userInfo')));
     }
 
 

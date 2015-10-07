@@ -26,9 +26,21 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
-          <a href="<?php echo $this->webroot; ?>dashboards">
+          <a href="<?php echo $this->webroot.'dashboards'; ?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i>
+            <span>User Management</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+              <li><a href="<?php echo $this->webroot.'modules'; ?>"><i class="fa fa-book"></i> Module Management</a></li>
+
+              <li><a href="<?php echo $this->webroot.'roles'; ?>"><i class="fa fa-book"></i> Role Management</a></li>
+          </ul>
         </li>
         <li class="treeview">
           <a href="#">
