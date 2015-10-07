@@ -8,7 +8,15 @@
           <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>
+              <?php 
+                  if (!empty($userInfo['first_name']) && !empty($userInfo['first_name'])) {
+                      echo $userInfo['first_name'].' '.$userInfo['last_name'];
+                  } elseif (!empty($userInfo['first_name'])) {
+                      echo $userInfo['first_name'];
+                  }
+              ?>
+          </p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
