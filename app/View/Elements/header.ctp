@@ -28,7 +28,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo $this->webroot.'img/user2-160x160.jpg'?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -40,7 +40,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo $this->webroot.'img/user3-128x128.jpg'?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -52,7 +52,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo $this->webroot.'img/user4-128x128.jpg'?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -64,7 +64,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo $this->webroot.'img/user3-128x128.jpg'?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -76,7 +76,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo $this->webroot.'img/user4-128x128.jpg'?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -204,7 +204,7 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo $this->webroot.'img/user2-160x160.jpg'; ?>" class="user-image" alt="User Image">
               <span class="hidden-xs">
                   <?php 
                       if (!empty($userInfo['first_name']) && !empty($userInfo['first_name'])) {
@@ -218,7 +218,7 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo $this->webroot.'img/user2-160x160.jpg'; ?>" class="img-circle" alt="User Image">
                 <p>
                     <?php 
                         if (!empty($userInfo['first_name']) && !empty($userInfo['first_name'])) {
@@ -250,7 +250,7 @@
                 <div class="pull-right">
                   <!-- <a href="#" class="btn btn-default btn-flat">Sign out</a> -->
                   <?php 
-                      echo $this->Html->link('Log Out', array('controller' => 'users', 'action' => 'logout'), array('class' => 'btn btn-default btn-flat'));
+                      echo $this->Html->link('Log Out', array('controller' => '/', 'action' => 'logout'), array('class' => 'btn btn-default btn-flat'));
                   ?>
                 </div>
               </li>

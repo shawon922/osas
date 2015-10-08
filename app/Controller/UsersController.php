@@ -8,6 +8,22 @@
 			
 	    }
 
+	    public function index() {
+
+	    	$users = $this->User->find('all', array('conditions' => array('User.status' => 1)));
+
+	    	$title_for_layout = 'User List';
+
+	    	$this->set(compact(array('title_for_layout', 'users')));
+	    }
+
+	    public function add() {
+
+	    	$title_for_layout = 'Add New User';
+
+	    	$this->set(compact(array('title_for_layout')));
+	    }
+
 
 		public function login() {
 

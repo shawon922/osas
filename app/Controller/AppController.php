@@ -42,8 +42,8 @@ class AppController extends Controller {
 					'scope' => array('User.status' => 1)
 				)
 			)
-		), 
-		'DebugKit.Toolbar'
+		)/*, 
+		'DebugKit.Toolbar'*/
 	);
 
 

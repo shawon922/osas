@@ -5,7 +5,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="<?php echo $this->webroot.'img/user2-160x160.jpg'; ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>
@@ -48,6 +48,8 @@
               <li><a href="<?php echo $this->webroot.'modules'; ?>"><i class="fa fa-book"></i> Module Management</a></li>
 
               <li><a href="<?php echo $this->webroot.'roles'; ?>"><i class="fa fa-book"></i> Role Management</a></li>
+
+              <li><a href="<?php echo $this->webroot.'users'; ?>"><i class="fa fa-book"></i> User List</a></li>
           </ul>
         </li>
         <li class="treeview">
