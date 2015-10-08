@@ -435,3 +435,7 @@
           </div><!-- /.row (main row) -->
 
         </section><!-- /.content -->
+
+
+
+<?php echo $this->Html->script(array( 'plugins/morris/morris.min', 'AdminLTE/dashboard')); ?>

@@ -21,7 +21,7 @@
           <th>Email</th>
           <th>Contact No.</th>
           <th>Username</th>
-          <th width="10%">
+          <th width="15%">
               <?php 
                   echo $this->Html->link( '<i class="fa fa-plus"></i>', array('controller' => 'users', 'action' => 'add'), array( 'class' => 'btn btn-primary', 'title' => 'Add',  'escape' => false ) ); 
               ?>
