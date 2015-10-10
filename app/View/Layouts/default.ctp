@@ -11,7 +11,7 @@
     <?php
     echo $this->Html->meta('icon');
 
-    echo $this->Html->css(array('bootstrap/bootstrap.min', 'font-awesome-4.4.0/css/font-awesome.min', 'ionicons-2.0.1/css/ionicons.min', '../js/plugins/jvectormap/jquery-jvectormap-1.2.2', 'AdminLTE.min', 'skins/_all-skins.min', '../js/plugins/iCheck/flat/blue', '../js/plugins/morris/morris', '../js/plugins/datepicker/datepicker3', '../js/plugins/daterangepicker/daterangepicker-bs3', '../js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min'));
+    echo $this->Html->css(array('bootstrap/bootstrap.min', 'font-awesome-4.4.0/css/font-awesome.min', 'ionicons-2.0.1/css/ionicons.min', '../js/plugins/jvectormap/jquery-jvectormap-1.2.2', 'AdminLTE.min', 'skins/_all-skins.min', '../js/plugins/iCheck/flat/blue', '../js/plugins/morris/morris', '../js/plugins/datepicker/datepicker3', '../js/plugins/daterangepicker/daterangepicker-bs3', '../js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min', 'style'));
 
     echo $this->fetch('meta');
     ?>
@@ -47,12 +47,22 @@
           ?>
 
           <!-- Content Wrapper. Contains page content -->
-          <div class="content-wrapper">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                      Dashboard
+                      <small><?php echo $title_for_layout; ?></small>
+                    </h1>
+                </section>
 
-                <?php echo $this->Session->flash(); ?>
+                <section class="content">
 
-                <?php echo $this->fetch('content'); ?>
-          </div>
+                    <?php echo $this->Session->flash(); ?>
+
+                    <?php echo $this->fetch('content'); ?>
+
+                </section>
+            </div>
             <?php echo $this->element('footer'); ?>
           
 

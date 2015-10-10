@@ -3,31 +3,43 @@
 </div><!-- /.login-logo -->
 <div class="login-box-body">
   <p class="login-box-msg">Sign in to start your operation</p>
-  <?php echo $this->Form->create('User'); ?>
-    <div class="form-group has-feedback">      
+  <?php echo $this->Form->create('User', array('class' => 'form-horizontal', 'novalidate' => true)); ?>
+     
       <?php 
-          echo $this->Form->input('User.username', array(
+          /*echo $this->Form->input('User.username', array(
                   'type' => 'text',
                   'class' => 'form-control',
                   'placeholder' => 'Username',
                   'required' => true,
+                  'div' => array('class' => 'form-group has-feedback'),
                   'after' => '<span class="glyphicon glyphicon-envelope form-control-feedback"></span>'
               )
-          );
+          );*/
         ?>
-    </div>
-    <div class="form-group has-feedback">
+
       <?php 
-          echo $this->Form->input('User.password', array(
+          /*echo $this->Form->input('User.password', array(
                   'type' => 'password',
                   'class' => 'form-control',
                   'placeholder' => 'Password',
                   'required' => true,
+                  'div' => array('class' => 'form-group has-feedback'),
                   'after' => '<span class="glyphicon glyphicon-lock form-control-feedback"></span>'
               )
-          );
+          );*/
         ?>
-    </div>
+
+     <div class="form-group has-feedback">
+          <label>Username</label>
+          <input type="text" name="data[User][username]" class="form-control" placeholder="Username">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <label>Password</label>
+          <input type="password" name="data[User][password]" class="form-control" placeholder="Password">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+
     <div class="row">
       <div class="col-xs-8">
         <div class="checkbox icheck">

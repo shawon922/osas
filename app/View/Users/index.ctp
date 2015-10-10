@@ -3,14 +3,8 @@
     echo $this->Html->script(array('plugins/DataTables/media/js/jquery.dataTables.min'));
 ?>
 
-<section class="content-header">
-    <h1>
-      Dashboard
-      <small><?php echo $title_for_layout; ?></small>
-    </h1>
-</section>
 
-<section class="content">
+
     
     <table id="user-list" cellpadding="4" cellspacing="4" class="table table-hover table-bordered">
       <thead>
@@ -35,7 +29,7 @@
                   foreach ($users as $user) {
            ?>
           <tr>
-              <td><?php echo $i; ?></td>
+              <td><?php echo $i++; ?></td>
               <td><?php echo $user['User']['first_name'].' '.$user['User']['last_name']; ?></td>
               <td><?php echo $user['User']['email']; ?></td>
               <td><?php echo $user['User']['contact_no']; ?></td>
@@ -54,8 +48,7 @@
 
           <?php } } ?>
       </tbody>
-    </table>   
-</section>
+    </table>
 
 <?php //echo $this->element('pagination'); ?>
 
