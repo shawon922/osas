@@ -15,12 +15,12 @@
     <thead>
 		
 	    <tr>
-            <th class="head0" style="text-align:center"> <?php echo ($lang ==1) ? ' প্যারেন্ট মডিউল ' : 'Parent Module'; ?>  </th>
-            <th class="head1" style="text-align:center"> <?php echo ($lang ==1) ? ' মডিউল ' : 'Module'; ?> </th>
-            <th class="head0" style="text-align:center"> <?php echo ($lang ==1) ? ' পর্যায় ' : 'Status'; ?> </th>
+            <th class="head0" style="text-align:center"> <?php echo 'Parent Module'; ?>  </th>
+            <th class="head1" style="text-align:center"> <?php echo 'Module'; ?> </th>
+            <th class="head0" style="text-align:center"> <?php echo 'Status'; ?> </th>
 			
 	       
-	        <th class="head1"><?php echo $this->Html->link( '<i class="wicon-plus"></i>', array( 'action' => 'add' ), array( 'class' => 'btn btn-xs btn-primary', 'title'=>($lang ==1) ? 'যোগ করুন':'Add', 'escape'=>false ) ); ?></th>
+	        <th class="head1"><?php echo $this->Html->link( '<i class="fa fa-plus"></i> Add New Module', array( 'action' => 'add' ), array( 'class' => 'btn btn-primary', 'title' => 'Add', 'escape'=>false ) ); ?></th>
 	        
 	    </tr>
 	</thead>
@@ -34,10 +34,10 @@
 				} else { 
 					'None';
 				} 
-			?>&nbsp;
+			?>
 		</td>
-        <td><?php echo h($module['Module'][($lang ==1) ? 'name' : 'name_en']); ?>&nbsp;</td>
-        <td><?php echo ($lang ==1) ? $status[$module['Module']['status']] : $status_en[$module['Module']['status']]; ?>&nbsp;</td>
+        <td><?php echo h($module['Module'][($lang ==1) ? 'name' : 'name_en']); ?></td>
+        <td><?php echo ($lang ==1) ? $status[$module['Module']['status']] : $status_en[$module['Module']['status']]; ?></td>
 		<td class="actions">
 			<?php //echo $this->Html->link(__('View'), array('action' => 'view', $module['Module']['id'])); ?>
             <?php //echo __( '|' ) ?>
@@ -62,7 +62,7 @@
 <?php endforeach; ?>
 	</tbody>
 	</table>
-<?php echo $this->element('pagination') ;?>
+<?php //echo $this->element('pagination') ;?>
 
 </div> 
 

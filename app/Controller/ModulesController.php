@@ -33,7 +33,7 @@ class ModulesController extends AppController {
             }
         }
 
-		$modules = $this->Module->find('list',array('fields' => array('id', 'name'),'conditions'=>array('parent_id' => 0, 'status' = >1)));
+		$modules = $this->Module->find('list',array('fields' => array('id', 'name'),'conditions'=>array('parent_id' => 0, 'status' =>1)));
         $title_for_layout = 'Add Module';
         $this->set(compact('modules','title_for_layout'));
     }

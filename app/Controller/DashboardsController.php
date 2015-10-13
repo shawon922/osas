@@ -4,6 +4,6 @@
 	{
 		public function index()
 		{
-			
+			$title_for_layout = 'Dashboard';
 		}
 	}

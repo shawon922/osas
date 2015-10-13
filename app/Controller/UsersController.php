@@ -78,11 +78,11 @@
 	    		if (!empty($this->request->data)) {
 	    			//Set value for common columns
 
-	    			//get user's id from $userInfo array
+	    			//It's important to assign primary key into array
 	    			$this->request->data['User']['id'] = $id; 
 
 	    			//First time 'modified_by' is 0 (zero)
-	    			$this->request->data['User']['modified_by'] = $userInfo['User']['id']; 
+	    			$this->request->data['User']['modified_by'] = $this->userInfo['id']; 
 
 	    			//get IP address of user's pc. Method is available in AppController class
 	    			$this->request->data['User']['terminal'] = $this->getClientIp(); 
@@ -100,6 +100,8 @@
 		    			} else {
 		    				$this->request->data['User']['password'] = $this->Auth->password($this->request->data['User']['password']);
 		    			}
+	    			} else {
+	    				unset($this->request->data['User']['password']);
 	    			}
 	    			
 
@@ -114,6 +116,19 @@
 	    				$this->Session->setFlash('User could not be saved. Try again.', 'default', array('class' => 'alert alert-danger'));
 	    			}	    			
 	    		}
+	    	}
+
+	    	$this->request->data = $this->User->find('first', array('conditions' => array('User.id' => $id, 'User.status' => 1)));
+	    	unset($this->request->data['User']['password']);
+	    }
+
+
+	    public function changeStatus($id, $status) {
+	    	$this->User->id = $id;
+
+	    	if ( $this->User->saveField('status', $status) ) {
+	    		$this->Session->setFlash('User has been removed successfully. Thank you.', 'default', array('class' => 'alert alert-success'));
+	    		$this->redirect(array('controller' => 'users', 'action' => 'index'));
 	    	}
 	    }
 
