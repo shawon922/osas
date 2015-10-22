@@ -1,8 +1,9 @@
 <?php
-	class User extends AppModel
+	class Employee extends AppModel
 	{
+		public $hasOne = array('User');
 		public $hasMany = array();
-		public $belongsTo = array();
+		public $belongsTo = array('Designation', 'Department');
 
 		public $validate = array(
 			'first_name' => array(
@@ -25,49 +26,44 @@
 	                'message' => 'Between 1 to 40 characters'
 	            )
 			),
-			'username' => array(
+			'designation_id' => array(
 				'notBlank' => array(
 					'rule' => 'notBlank',
-					'message' => 'Username is required'
-				),
-				'alphaNumeric' => array(
-	                'rule' => 'alphaNumeric',
-	                'required' => true,
-	                'message' => 'Letters and numbers only'
-	            ),
-				'between' => array(
-	                'rule' => array('lengthBetween', 4, 35),
-	                'message' => 'Between 4 to 35 characters'
-	            ),
-	            'unique' => array(
-	            	'rule' => 'isUnique',
-	            	'message' => 'Username already exist'
-	            )
+					'message' => 'Designation is required'
+				)
 			),
-			'password' => array(
+			'department_id' => array(
 				'notBlank' => array(
 					'rule' => 'notBlank',
-					'message' => 'Password is required',
-					'on' => 'create'
-				),
-				'between' => array(
-	                'rule' => array('lengthBetween', 6, 55),
-	                'message' => 'Between 6 to 55 characters',
-					'on' => 'create'
-	            )
+					'message' => 'Department is required'
+				)
 			),
-			'confirm_password' => array(
+			'gender' => array(
 				'notBlank' => array(
 					'rule' => 'notBlank',
-					'message' => 'Confirm Password is required',
-					'on' => 'create'
-				),
-				'between' => array(
-	                'rule' => array('lengthBetween', 6, 55),
-	                'message' => 'Between 6 to 55 characters',
-					'on' => 'create'
-	            )
+					'message' => 'Gender is required'
+				)
 			),
+			'date_of_birth' => array(
+				'notBlank' => array(
+					'rule' => 'notBlank',
+					'message' => 'Date of Birth is required'
+				)/*,
+				'date' => array(
+		            'rule' => 'date',
+		            'message' => 'Enter a valid date'
+	            )*/
+	        ),
+	        'date_of_joining' => array(
+	        	'notBlank' => array(
+					'rule' => 'notBlank',
+					'message' => 'Date of Joining is required'
+				)/*,
+				'date' => array(
+		            'rule' => 'date',
+		            'message' => 'Enter a valid date'
+	            )*/
+	        ),
 			'email' => array(
 				'notBlank' => array(
 					'rule' => 'notBlank',
@@ -101,12 +97,6 @@
 	                'rule' => array('maxLength', 500),
 	                'message' => 'Maximum 500 characters allowed'
 	            )
-			),
-			'role_id' => array(
-				'notBlank' => array(
-					'rule' => 'notBlank',
-					'message' => 'Role is required'
-				)
 			)
 		);
 	}

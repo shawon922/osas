@@ -62,6 +62,8 @@
                 <li><a href="<?php echo $this->webroot.'employees'; ?>"><i class="fa fa-book"></i> Employee </a></li>
 
                 <li><a href="<?php echo $this->webroot.'designations'; ?>"><i class="fa fa-book"></i> Designation </a></li>
+
+                <li><a href="<?php echo $this->webroot.'departments'; ?>"><i class="fa fa-book"></i> Department </a></li>
             
                 <li><a href="<?php echo $this->webroot.'courses'; ?>"><i class="fa fa-book"></i> Course </a></li>
             </ul>

@@ -25,20 +25,20 @@
           <?php 
               if (!empty($courses)) { 
                 $i = 1;
-                  foreach ($courses as $user) {
+                  foreach ($courses as $course) {
            ?>
           <tr>
               <td><?php echo $i++; ?></td>
-              <td><?php echo $user['Course']['code']; ?></td>
-              <td><?php echo $user['Course']['name']; ?></td>
-              <td><?php echo $user['Course']['credit']; ?></td>
+              <td><?php echo $course['Course']['code']; ?></td>
+              <td><?php echo $course['Course']['name']; ?></td>
+              <td><?php echo $course['Course']['credit']; ?></td>
               <td>
                   <?php 
-                      echo $this->Html->link( '<i class="fa fa-pencil"></i>', array('controller' => 'courses', 'action' => 'edit', $user['Course']['id']), array( 'class' => 'btn btn-primary', 'title' => 'Edit',  'escape' => false ) ); 
+                      echo $this->Html->link( '<i class="fa fa-pencil"></i>', array('controller' => 'courses', 'action' => 'edit', $course['Course']['id']), array( 'class' => 'btn btn-primary', 'title' => 'Edit',  'escape' => false ) ); 
 
                       echo ' ';
 
-                      echo $this->Form->postLink( '<i class="fa fa-times"></i>', array('controller' => 'courses', 'action' => 'changeStatus', $user['Course']['id'], '0'), array( 'class' => 'btn btn-primary', 'title' => 'Remove',  'escape' => false ), __('Are you sure ?'));
+                      echo $this->Form->postLink( '<i class="fa fa-times"></i>', array('controller' => 'courses', 'action' => 'changeStatus', $course['Course']['id'], '0'), array( 'class' => 'btn btn-primary', 'title' => 'Remove',  'escape' => false ), __('Are you sure ?'));
 
                    ?>
               </td>

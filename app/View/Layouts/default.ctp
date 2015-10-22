@@ -84,7 +84,7 @@
     <?php 
         echo $this->Html->script(array('plugins/bootstrap/bootstrap.min', 'raphael-min', 'plugins/sparkline/jquery.sparkline.min', 'plugins/sparkline/jquery.sparkline.min', 'plugins/jvectormap/jquery-jvectormap-1.2.2.min', 'plugins/jvectormap/jquery-jvectormap-world-mill-en', 'plugins/knob/jquery.knob', 'moment.min', 'plugins/daterangepicker/daterangepicker', 'plugins/datepicker/bootstrap-datepicker', 'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min', 'plugins/slimScroll/jquery.slimscroll.min', 'plugins/fastclick/fastclick.min', 'AdminLTE/app.min', 'AdminLTE/demo'));
     ?>
-
+    
     
 </body>
 </html>

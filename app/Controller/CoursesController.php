@@ -78,11 +78,11 @@
 
 
 	    			if ($this->Course->save($this->request->data)) {
-	    				$this->Session->setFlash('Course has been saved successfully. Thank you.', 'default', array('class' => 'alert alert-success'));
+	    				$this->Session->setFlash('Course has been savedupdated successfully. Thank you.', 'default', array('class' => 'alert alert-success'));
 	    				$this->redirect(array('controller' => 'courses', 'action' => 'index'));
 	    			} else {
 	    				
-	    				$this->Session->setFlash('Course could not be saved. Try again.', 'default', array('class' => 'alert alert-danger'));
+	    				$this->Session->setFlash('Course could not be updated. Try again.', 'default', array('class' => 'alert alert-danger'));
 	    			}	    			
 	    		}
 	    	}

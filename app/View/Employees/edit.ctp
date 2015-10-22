@@ -1,29 +1,73 @@
+<style type="text/css">
+    .radio,
+    .checkbox {
+      min-height: 20px;
+      padding-left: 20px;
+    }
+    .radio.inline,
+    .checkbox.inline {
+      display: inline-block;
+      padding-top: 5px;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+     
+    .radio.inline + .radio.inline,
+    .checkbox.inline + .checkbox.inline {
+      margin-left: 10px;
+    }
+
+    .radio-group {
+        margin-left: 15px;
+    }
+</style>
+
     <?php 
+        $gender = Configure::read('gender');
         
-        echo $this->Form->create('User', array('enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'novalidate' => true));
+        echo $this->Form->create('Employee', array('enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'novalidate' => true));
 
     ?>
     <div class="box-body">
-        <?php
-            echo $this->Form->input('User.first_name', array('type' => 'text', 'label' => array('text' => 'First Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'First Name', 'class' => 'form-control'));
+       
+            <?php 
 
-            echo $this->Form->input('User.last_name', array('type' => 'text', 'label' => array('text' => 'Last Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Last Name', 'class' => 'form-control'));
+                echo $this->Form->input('Employee.first_name', array('type' => 'text', 'label' => array('text' => 'First Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'First Name', 'class' => 'form-control', 'autocomplete' => 'off'));
 
-            //echo $this->Form->input('User.designation_id', array('type' => 'select', 'label' => array('text' => 'Designation', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Designation--', 'class' => 'form-control', 'options' => array(1 => 'Dean', 2 => 'Head of Dept.', 3 => 'Professor', 4 => 'Assistant Professor', 5 => 'Lecturer')));
+                echo $this->Form->input('Employee.last_name', array('type' => 'text', 'label' => array('text' => 'Last Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Last Name', 'class' => 'form-control', 'autocomplete' => 'off'));
 
-            echo $this->Form->input('User.username', array('type' => 'text', 'label' => array('text' => 'Username', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Username', 'class' => 'form-control'));
+                echo $this->Form->input('Employee.date_of_birth', array('type' => 'text', 'label' => array('text' => 'Date of Birth', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'dd-mm-yyyy', 'class' => 'form-control datepicker', 'readonly' => true, 'date-data-format' => 'dd-mm-yyyy', 'data-provide'=> 'datepicker-inline'));
 
-            echo $this->Form->input('User.password', array('type' => 'password', 'label' => array('text' => 'Password', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Password', 'class' => 'form-control'));
+                
+                
+                echo '<div class="form-group"><label class="col-sm-2 control-label" for="EmployeeGender">Gender</label><span class="radio-group">';
+                echo $this->Form->input("Employee.gender",
+                    array(
+                    'div' => "radio inline",
+                    'separator' => '</div><div class="radio inline">',
+                    'label' => false,
+                    'type' => 'radio',
+                    'default'=>0,
+                    'legend' => false,
+                    'options' => $gender
+                    )
+                );
 
-            echo $this->Form->input('User.confirm_password', array('type' => 'password', 'label' => array('text' => 'Confirm Password', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Confirm Password', 'class' => 'form-control'));
+                echo '</span></div>';
 
-            echo $this->Form->input('User.email', array('type' => 'email', 'label' => array('text' => 'Email', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Email', 'class' => 'form-control'));
+                echo $this->Form->input('Employee.date_of_joining', array('type' => 'text', 'label' => array('text' => 'Date of Joining', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'dd-mm-yyyy', 'class' => 'form-control datepicker', 'readonly' => true, 'date-data-format' => 'dd-mm-yyyy', 'data-provide'=> 'datepicker-inline'));
 
-            echo $this->Form->input('User.contact_no', array('type' => 'text', 'label' => array('text' => 'Contact No.', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Contact No.', 'class' => 'form-control'));
+                
+                echo $this->Form->input('Employee.designation_id', array('type' => 'select', 'label' => array('text' => 'Designation', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Designation--', 'class' => 'form-control', 'options' => array(1 => 'Dean', 2 => 'Head of Dept.', 3 => 'Professor', 4 => 'Assistant Professor', 5 => 'Lecturer')));
 
-            echo $this->Form->input('User.address', array('type' => 'textarea', 'label' => array('text' => 'Address', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Address', 'class' => 'form-control'));
+                echo $this->Form->input('Employee.department_id', array('type' => 'select', 'label' => array('text' => 'Department', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Department--', 'class' => 'form-control', 'options' => array(1 => 'CSE', 2 => 'BBA', 3 => 'IS', 4 => 'GP', 5 => 'Econ')));
 
-            echo $this->Form->input('User.role_id', array('type' => 'select', 'label' => array('text' => 'Role', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Role--', 'class' => 'form-control', 'options' => array(1 => 'Admin', 2 => 'Teacher', 3 => 'Student', 4 => 'Other')));
+                echo $this->Form->input('Employee.email', array('type' => 'email', 'label' => array('text' => 'Email', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Email', 'class' => 'form-control'));
+
+                echo $this->Form->input('Employee.contact_no', array('type' => 'text', 'label' => array('text' => 'Contact No.', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Contact No.', 'class' => 'form-control', 'autocomplete' => 'off'));
+
+                echo $this->Form->input('Employee.address', array('type' => 'textarea', 'label' => array('text' => 'Address', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Address', 'class' => 'form-control', 'autocomplete' => 'off'));
+                
 
         ?>
 
@@ -31,7 +75,7 @@
 
         <?php
 
-            echo $this->Form->button('Update', array('type' => 'submit', 'class' => 'btn btn-primary'));
+            echo $this->Form->button('Save', array('type' => 'submit', 'class' => 'btn btn-primary'));
 
             echo ' ';
 
@@ -49,3 +93,13 @@
         echo $this->Form->end();
     ?>
 
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+</script>

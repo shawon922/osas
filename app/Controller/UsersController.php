@@ -158,6 +158,10 @@
 
 
 	    public function logout() {
+	    	$this->Session->destroy();
+	    	$this->Cookie->destroy();
+	    	$this->remove_all_cookies();
+
 	    	return $this->redirect($this->Auth->logout());
 	    }
 	}
