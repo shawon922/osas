@@ -19,10 +19,13 @@
     <?php 
         echo $this->Html->script(array('plugins/jQuery/jQuery-2.1.4.min', 'plugins/jQueryUI/jquery-ui.min'));
     ?>
-<SCRIPT type="text/javascript">
+<script type="text/javascript">
     window.history.forward();
-    function noBack() { window.history.forward(); }
-</SCRIPT>
+    
+    function noBack() { 
+        window.history.forward(); 
+    }
+</script>
        
 
     <?php

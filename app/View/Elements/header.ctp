@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="<?php echo $this->webroot; ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>O</b>AS</span>
       <!-- logo for regular state and mobile devices -->
@@ -25,66 +25,23 @@
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
+                  <?php if (!empty($messages)) { 
+                        foreach ($messages as $msg) {
+                   ?>
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
                         <img src="<?php echo $this->webroot.'img/user2-160x160.jpg'?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                        <?php echo $msg['User']['first_name'].' '.$msg['User']['last_name']; ?>
+                        <small><i class="fa fa-clock-o"></i> <?php echo date('d M', $msg['User']['created']); ?></small>
                       </h4>
-                      <p>Why not buy a new awesome theme?</p>
+                      <p><?php echo $msg['User']['email']; ?></p>
                     </a>
                   </li><!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<?php echo $this->webroot.'img/user3-128x128.jpg'?>" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<?php echo $this->webroot.'img/user4-128x128.jpg'?>" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<?php echo $this->webroot.'img/user3-128x128.jpg'?>" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<?php echo $this->webroot.'img/user4-128x128.jpg'?>" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
+                  
+                  <?php } }?>
                 </ul>
               </li>
               <li class="footer"><a href="#">See All Messages</a></li>

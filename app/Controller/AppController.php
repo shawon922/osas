@@ -5,11 +5,12 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
 
-
+    public $uses = array('User', 'Role');
 	public $components = array('Session', 'Email', 'RequestHandler', 'Cookie',
 		'Auth' => array(
 			'loginRedirect' => array('controller' => 'dashboards', 'action' => 'index'),
 			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+            'authorize'      => array('Controller'),
 			'authenticate' => array(
 				'Form' => array(
 					'scope' => array('User.status' => 1, )
@@ -33,7 +34,13 @@ class AppController extends Controller {
     {
     	parent::beforeFilter();
     	Configure::load('constant');
-    	$this->Session->write('USER_INFO', $this->Auth->user());
+
+        if (!empty($this->Auth->user())) {
+            $this->Session->write('USER_INFO', $this->Auth->user());
+        } else {
+            return false;
+        }
+    	
     	$this->userInfo = $this->Session->read('USER_INFO');
     	$userInfo = $this->userInfo;
     	$this->Auth->allow(array('login', 'logout', 'add', 'forgotPassword'));
@@ -54,15 +61,22 @@ class AppController extends Controller {
 
 
     public function isAuthorized($user) {
-    	
+    	//pr($user); die;
     	switch ($user['role_id']) {
     		case 1:
     			return true;
     			break;
     		
     		default:
-    			return true;
-    			break;
+    			$role_status = $this->Role->find('first', array('conditions'=>array('Role.id' => $user['role_id']), 'fields' => 'Role.status'));
+                //pr($role_status); die;
+                if ($role_status['Role']['status'] == 0) {
+                    return $this->redirect($this->Auth->logout());
+                } else if( (bool)(in_array("{$this->request->action}", $this->allowedActions[$user['role_id']])) === false ) {
+                    return $this->redirect($this->Auth->logout());
+                } else {
+                    return true;
+                }
     	}
     	return false;
 	}

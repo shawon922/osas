@@ -4,8 +4,7 @@
 		
 
 		function beforeFilter() {
-	        parent::beforeFilter();
-			
+	        parent::beforeFilter();			
 	    }
 
 	    public function index() {
@@ -164,4 +163,34 @@
 
 	    	return $this->redirect($this->Auth->logout());
 	    }
+
+
+	    public function loginInfo($userId)
+		{
+			$data = NULL;
+			$ipAddress = $this->getClientIP();
+			$macs = $this->GetMacAddr(strtolower(PHP_OS));
+			if (!empty($macs)) {
+				$macs = $this->multi_unique($macs);
+			}
+			foreach (array_keys($macs, '00-00-00-00-00-00') as $key) {
+				unset($macs[$key]);
+			}
+			$temp = "@";
+			$string = implode($temp, $macs);
+			$data['UserLogin']["login"] = mktime(date("H"), date("i"), date("s"), date("m"),date("d"),date("Y"));
+			$data['UserLogin']["terminal"] = $_SERVER["REMOTE_ADDR"];
+			$data['UserLogin']["user_id"] = $userId;
+			$data["UserLogin"]["browser_info"] = $_SERVER["HTTP_USER_AGENT"];
+			$data["UserLogin"]["server_signature"] = $_SERVER["SERVER_SIGNATURE"];
+			$data["UserLogin"]["server_software"] = $_SERVER["SERVER_SOFTWARE"];
+			//$data["UserLogin"]["server_ip"] = $_SERVER["SERVER_ADDR"];
+			$data["UserLogin"]["server_ip"] = $this->getClientIP();
+			$data["UserLogin"]["server_mac"] = $string;
+			//$_SESSION["sessionId"] = session_id();
+			$this->Session->write('UserLogin.session_id', session_id());
+			$data["UserLogin"]["session_id"] = session_id();
+			$this->loadModel('UserLogin');
+			$this->UserLogin->save($data);
+		}
 	}
