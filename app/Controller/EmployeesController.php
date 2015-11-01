@@ -58,7 +58,7 @@
 	    			$exp_email = explode('@', $this->request->data['Employee']['email']);
 
 	    			//username is generated from email and password is from contact_no
-	    			$this->request->data['User']['username'] = $exp_email[0];
+	    			$this->request->data['User']['username'] = $exp_email[0].$this->request->data['Employee']['contact_no'];
 	    			$this->request->data['User']['password'] = $this->Auth->password($this->request->data['Employee']['contact_no']);
 
 

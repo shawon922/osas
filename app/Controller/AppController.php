@@ -9,7 +9,7 @@ class AppController extends Controller {
 	public $components = array('Session', 'Email', 'RequestHandler', 'Cookie',
 		'Auth' => array(
 			'loginRedirect' => array('controller' => 'dashboards', 'action' => 'index'),
-			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+			'logoutRedirect' => array('controller' => 'homes', 'action' => 'index'),
             'authorize'      => array('Controller'),
 			'authenticate' => array(
 				'Form' => array(
@@ -35,14 +35,17 @@ class AppController extends Controller {
     	parent::beforeFilter();
     	Configure::load('constant');
 
-        if (!empty($this->Auth->user())) {
+        if (!empty($this->Auth->user())) { 
             $this->Session->write('USER_INFO', $this->Auth->user());
+            $this->layout = 'admin';
         } else {
-            return false;
+            $this->layout = 'default';            
         }
     	
     	$this->userInfo = $this->Session->read('USER_INFO');
     	$userInfo = $this->userInfo;
+        
+        $this->Auth->allow(array('controller' => 'homes', 'action' => 'index'));
     	$this->Auth->allow(array('login', 'logout', 'add', 'forgotPassword'));
     	//pr($userInfo); die;
     	$this->set(compact(array('userInfo')));
