@@ -26,6 +26,7 @@
  */
 	Router::connect('/', array('controller' => 'homes', 'action' => 'index'));
 
+	Router::connect('/register', array('controller' => 'students', 'action' => 'register', 'register'));
 	Router::connect('/login', array('controller' => 'users', 'action' => 'login', 'login'));
 	Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
 	

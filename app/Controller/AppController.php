@@ -46,6 +46,7 @@ class AppController extends Controller {
     	$userInfo = $this->userInfo;
         
         $this->Auth->allow(array('controller' => 'homes', 'action' => 'index'));
+        $this->Auth->allow(array('controller' => 'students', 'action' => 'register'));
     	$this->Auth->allow(array('login', 'logout', 'add', 'forgotPassword'));
     	//pr($userInfo); die;
     	$this->set(compact(array('userInfo')));
