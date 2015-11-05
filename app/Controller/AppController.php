@@ -8,7 +8,7 @@ class AppController extends Controller {
     public $uses = array('User', 'Role');
 	public $components = array('Session', 'Email', 'RequestHandler', 'Cookie',
 		'Auth' => array(
-			'loginRedirect' => array('controller' => 'dashboards', 'action' => 'index'),
+			'loginRedirect' => array('controller' => 'homes', 'action' => 'index'),
 			'logoutRedirect' => array('controller' => 'homes', 'action' => 'index'),
             'authorize'      => array('Controller'),
 			'authenticate' => array(
@@ -41,15 +41,14 @@ class AppController extends Controller {
         } else {
             $this->layout = 'default';            
         }
+
+        $messages = $this->User->find('all', array('conditions' => array('User.status' => 1), 'fields' => array('User.first_name', 'User.last_name', 'User.email', 'User.created'), 'order' => array('User.created DESC')));
     	
     	$this->userInfo = $this->Session->read('USER_INFO');
     	$userInfo = $this->userInfo;
-        
-        $this->Auth->allow(array('controller' => 'homes', 'action' => 'index'));
-        $this->Auth->allow(array('controller' => 'students', 'action' => 'register'));
-    	$this->Auth->allow(array('login', 'logout', 'add', 'forgotPassword'));
+
     	//pr($userInfo); die;
-    	$this->set(compact(array('userInfo')));
+    	$this->set(compact(array('userInfo', 'messages')));
     }
 
     function beforeRender() {

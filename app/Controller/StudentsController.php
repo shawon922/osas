@@ -5,7 +5,7 @@
 
 		function beforeFilter() {
 	        parent::beforeFilter();
-			
+			$this->Auth->allow(array('register'));	
 	    }
 
 	    public function index() {

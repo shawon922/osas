@@ -4,7 +4,8 @@
 		
 
 		function beforeFilter() {
-	        parent::beforeFilter();			
+	        parent::beforeFilter();	
+	        $this->Auth->allow(array('login', 'logout', 'forgotPassword'));        	
 	    }
 
 	    public function index() {
