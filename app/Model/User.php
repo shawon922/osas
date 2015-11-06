@@ -2,7 +2,7 @@
 	class User extends AppModel
 	{
 		public $hasMany = array();
-		public $belongsTo = array('Employee', 'Designation');
+		public $belongsTo = array('Employee', 'Designation', 'Department');
 
 		public $validate = array(
 			'first_name' => array(

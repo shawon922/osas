@@ -1,7 +1,7 @@
 <?php
 	class Department extends AppModel
 	{
-		public $hasMany = array('Employee');
+		public $hasMany = array('Employee', 'User');
 		public $belongsTo = array();
 
 		public $validate = array(
