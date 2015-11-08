@@ -2,8 +2,34 @@
     echo $this->Html->css(array('../js/plugins/DataTables/media/css/jquery.dataTables')); 
     echo $this->Html->script(array('plugins/DataTables/media/js/jquery.dataTables.min'));
 ?>
+    <?php echo $this->Form->create('OfferCourse', array('class' => 'form-inline', 'novalidate' => true)); ?>
 
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-1 text-right">
+            <label>Semester</label>
+        </div>
+        <div class="col-md-3">
+            <?php 
+                echo $this->Form->input('OfferCourse.semester_id', array('type' => 'select', 'label' => false, 'empty' => '--Select Semester--', 'class' => 'form-control', 'options' => array(1 => 'Admin', 2 => 'Teacher', 3 => 'Student', 4 => 'Other')));
+            ?>
+        </div>
+        <div class="col-md-1 text-right">
+            <label>Year</label>
+        </div>
+        <div class="col-md-3">
+            <?php 
+                echo $this->Form->input('OfferCourse.year', array('type' => 'select', 'label' => false, 'empty' => '--Select Year--', 'class' => 'form-control', 'options' => array('1' => 'Admin', 2 => 'Teacher', 3 => 'Student', 4 => 'Other')));
+            ?>
+        </div>
+        <div class="col-md-1">
+            <?php 
+                echo $this->Form->button('Search', array('type' => 'submit', 'class' => 'btn btn-primary'));
+            ?>
+        </div>
+    </div>
 
+    <?php echo $this->Form->end(); ?>
 
     
     <table id="course-list" cellpadding="4" cellspacing="4" class="table table-hover table-bordered">
