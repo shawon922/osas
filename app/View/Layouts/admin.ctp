@@ -56,8 +56,7 @@
             <div class="content-wrapper">
                 <section class="content-header">
                     <h1>
-                      Dashboard
-                      <small><?php echo $title_for_layout; ?></small>
+                        <?php echo $title_for_layout; ?>
                     </h1>
                 </section>
 

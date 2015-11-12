@@ -15,7 +15,7 @@
 
         ?>
 
-        <div class="box-footer">
+        <div class="box-footer col-md-3 col-md-offset-2" style="background-color: #ECF0F5;">
 
         <?php
 

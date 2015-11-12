@@ -4,7 +4,7 @@
 ?>
     <?php echo $this->Form->create('OfferCourse', array('class' => 'form-inline', 'novalidate' => true)); ?>
 
-    <div class="row" style="margin-bottom: 20px;">
+    <div class="row" style="margin-bottom: 50px;">
         <div class="col-md-1"></div>
         <div class="col-md-1 text-right">
             <label>Semester</label>
@@ -31,7 +31,12 @@
 
     <?php echo $this->Form->end(); ?>
 
-    
+    <div class="row pull-right">
+        <?php 
+            echo $this->Html->link( '<i class="fa fa-plus"></i> Offer Course', array('controller' => 'offer_courses', 'action' => 'add'), array( 'class' => 'btn btn-primary add-button', 'title' => 'Offer Course',  'escape' => false ) ); 
+              ?>
+    </div>
+
     <table id="course-list" cellpadding="4" cellspacing="4" class="table table-hover table-bordered">
       <thead>
 
@@ -40,11 +45,7 @@
           <th>Course Code</th>
           <th>Course Name</th>
           <th>Teacher Name</th>
-          <th width="20%">
-              <?php 
-                  echo $this->Html->link( '<i class="fa fa-plus"></i> Offer Course', array('controller' => 'courses', 'action' => 'add'), array( 'class' => 'btn btn-primary', 'title' => 'Offer Course',  'escape' => false ) ); 
-              ?>
-          </th>
+          <th width="20%">Action</th>
         </tr>
       </thead>
       <tbody>
