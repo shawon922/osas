@@ -30,11 +30,11 @@
 					'rule' => 'notBlank',
 					'message' => 'Username is required'
 				),
-				'alphaNumeric' => array(
+				/*'alphaNumeric' => array(
 	                'rule' => 'alphaNumeric',
 	                'required' => true,
 	                'message' => 'Letters and numbers only'
-	            ),
+	            ),*/
 				'between' => array(
 	                'rule' => array('lengthBetween', 4, 35),
 	                'message' => 'Between 4 to 35 characters'

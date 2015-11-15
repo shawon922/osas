@@ -11,17 +11,18 @@
 	    public function index() {
 	    	$title_for_layout = 'Course List';
 
-	    	$this->set(compact(array('title_for_layout', 'courses')));
+	    	$this->set(compact('title_for_layout', 'courses'));
 	    }
 
 	    public function add() {
-	    	$title_for_layout = 'Add New Course';
+	    	$title_for_layout = 'Offer New Course';
 	    	$this->set('title_for_layout', $title_for_layout);
 
 	    	//pr($this->request->data);
 
 	    	//Checking the request is 'post' or not
-	    	if ($this->request->is('post')) {
+	    	if ($this->request->is('post')) { 
+	    		pr($this->request->data); die;
 	    		//Checking $this->request->data is empty or not
 	    		if (!empty($this->request->data)) {
 	    			//Set value for common columns
@@ -47,6 +48,33 @@
 	    			}	    			
 	    		}
 	    	}
+
+	    	$temp_courses = $this->Course->find('all', array('conditions' => array('Course.status' => 1, 'Course.department_id' => $this->userInfo['department_id']), 'fields' => array('Course.id', 'Course.code', 'Course.name')));
+
+	    	$courses = array();
+
+	    	if (!empty($temp_courses)) {
+
+	    		foreach ($temp_courses as $temp_course) {
+	    			$courses[$temp_course['Course']['id']] = $temp_course['Course']['code'].'-'.$temp_course['Course']['name'];
+	    		}
+	    	}
+
+
+	    	$temp_teachers = $this->User->find('all', array('conditions' => array('User.status' => 1, 'User.department_id' => $this->userInfo['department_id'], 'User.role_id' => 2)));
+
+	    	
+	    	$teachers = array();
+
+	    	if (!empty($temp_teachers)) {
+
+	    		foreach ($temp_teachers as $temp_teacher) {
+	    			$teachers[$temp_teacher['User']['id']] = $temp_teacher['Employee']['first_name'].' '.$temp_teacher['Employee']['last_name'].'('.$temp_teacher['Employee']['employee_code'].')';
+	    		}
+	    	}
+
+
+	    	$this->set(compact('courses', 'teachers'));
 	    }
 
 
@@ -95,6 +123,37 @@
 	    		$this->Session->setFlash('Course has been removed successfully. Thank you.', 'default', array('class' => 'alert alert-success'));
 	    		$this->redirect(array('controller' => 'courses', 'action' => 'index'));
 	    	}
+	    }
+
+
+	    public function addOfferCourseTr($i = null)
+	    {
+	    	$temp_courses = $this->Course->find('all', array('conditions' => array('Course.status' => 1, 'Course.department_id' => $this->userInfo['department_id']), 'fields' => array('Course.id', 'Course.code', 'Course.name')));
+
+	    	$courses = array();
+
+	    	if (!empty($temp_courses)) {
+
+	    		foreach ($temp_courses as $temp_course) {
+	    			$courses[$temp_course['Course']['id']] = $temp_course['Course']['code'].'-'.$temp_course['Course']['name'];
+	    		}
+	    	}
+
+
+	    	$temp_teachers = $this->User->find('all', array('conditions' => array('User.status' => 1, 'User.department_id' => $this->userInfo['department_id'], 'User.role_id' => 2)));
+
+	    	
+	    	$teachers = array();
+
+	    	if (!empty($temp_teachers)) {
+
+	    		foreach ($temp_teachers as $temp_teacher) {
+	    			$teachers[$temp_teacher['User']['id']] = $temp_teacher['Employee']['first_name'].' '.$temp_teacher['Employee']['last_name'].'('.$temp_teacher['Employee']['employee_code'].')';
+	    		}
+	    	}
+
+
+	    	$this->set(compact('courses', 'teachers', 'i'));
 	    }
 
 	}

@@ -179,12 +179,12 @@
                 <p>
                     <?php 
                         if (!empty($userInfo['first_name']) && !empty($userInfo['first_name'])) {
-                            echo $userInfo['first_name'].' '.$userInfo['last_name'].' - Jr. Software Engineer';
+                            echo $userInfo['first_name'].' '.$userInfo['last_name'].' - '.$userInfo['Designation']['name'];
                         } elseif (!empty($userInfo['first_name'])) {
-                            echo $userInfo['first_name'].' - Jr. Software Engineer';
+                            echo $userInfo['first_name'].' - '.$userInfo['Designation']['name'];
                         }
                     ?>
-                    <small>Member since Oct. 2015</small>
+                    <small>Member since <?php echo date('M Y', $userInfo['created']); ?></small>
                 </p>
               </li>
               <!-- Menu Body -->

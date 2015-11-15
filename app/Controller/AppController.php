@@ -5,7 +5,7 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
 
-    public $uses = array('User', 'Role');
+    public $uses = array('User', 'Role', 'Designation', 'Department', 'Employee', 'Course', 'OfferCourse', 'Student');
 	public $components = array('Session', 'Email', 'RequestHandler', 'Cookie',
 		'Auth' => array(
 			'loginRedirect' => array('controller' => 'homes', 'action' => 'index'),
@@ -48,7 +48,7 @@ class AppController extends Controller {
     	$userInfo = $this->userInfo;
 
     	//pr($userInfo); die;
-    	$this->set(compact(array('userInfo', 'messages')));
+    	$this->set(compact('userInfo', 'messages'));
     }
 
     function beforeRender() {
@@ -71,7 +71,7 @@ class AppController extends Controller {
     			break;
     		
     		default:
-    			$role_status = $this->Role->find('first', array('conditions'=>array('Role.id' => $user['role_id']), 'fields' => 'Role.status'));
+    			/*$role_status = $this->Role->find('first', array('conditions'=>array('Role.id' => $user['role_id']), 'fields' => 'Role.status'));
                 //pr($role_status); die;
                 if ($role_status['Role']['status'] == 0) {
                     return $this->redirect($this->Auth->logout());
@@ -79,7 +79,9 @@ class AppController extends Controller {
                     return $this->redirect($this->Auth->logout());
                 } else {
                     return true;
-                }
+                }*/
+
+                return true;
     	}
     	return false;
 	}

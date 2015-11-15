@@ -1,6 +1,9 @@
 <?php 
     echo $this->Html->css(array('../js/plugins/DataTables/media/css/jquery.dataTables')); 
     echo $this->Html->script(array('plugins/DataTables/media/js/jquery.dataTables.min'));
+
+    $semesters = Configure::read('semester');
+    $years = Configure::read('semester_year');
 ?>
     <?php echo $this->Form->create('OfferCourse', array('class' => 'form-inline', 'novalidate' => true)); ?>
 
@@ -11,7 +14,7 @@
         </div>
         <div class="col-md-3">
             <?php 
-                echo $this->Form->input('OfferCourse.semester_id', array('type' => 'select', 'label' => false, 'empty' => '--Select Semester--', 'class' => 'form-control', 'options' => array(1 => 'Admin', 2 => 'Teacher', 3 => 'Student', 4 => 'Other')));
+                echo $this->Form->input('OfferCourse.semester_id', array('type' => 'select', 'label' => false, 'empty' => '--Select Semester--', 'class' => 'form-control', 'options' => $semesters));
             ?>
         </div>
         <div class="col-md-1 text-right">
@@ -19,7 +22,7 @@
         </div>
         <div class="col-md-3">
             <?php 
-                echo $this->Form->input('OfferCourse.year', array('type' => 'select', 'label' => false, 'empty' => '--Select Year--', 'class' => 'form-control', 'options' => array('1' => 'Admin', 2 => 'Teacher', 3 => 'Student', 4 => 'Other')));
+                echo $this->Form->input('OfferCourse.year', array('type' => 'select', 'label' => false, 'empty' => '--Select Year--', 'class' => 'form-control', 'options' => $years, 'value' => 1));
             ?>
         </div>
         <div class="col-md-1">

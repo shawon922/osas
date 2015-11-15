@@ -54,10 +54,11 @@
 	    			$this->request->data['User']['first_name'] = $this->request->data['Employee']['first_name'];
 	    			$this->request->data['User']['last_name'] = $this->request->data['Employee']['last_name'];
 	    			$this->request->data['User']['designation_id'] = $this->request->data['Employee']['designation_id'];
+	    			$this->request->data['User']['department_id'] = $this->request->data['Employee']['department_id'];
 
 	    			$exp_email = explode('@', $this->request->data['Employee']['email']);
 
-	    			//username is generated from email and password is from contact_no
+	    			//username is generated from email-contact_no and password is from contact_no
 	    			$this->request->data['User']['username'] = $exp_email[0].$this->request->data['Employee']['contact_no'];
 	    			$this->request->data['User']['password'] = $this->Auth->password($this->request->data['Employee']['contact_no']);
 
@@ -85,6 +86,13 @@
 	    			}	    			
 	    		}
 	    	}
+
+
+    		$designations = $this->Designation->find('list', array('conditions' => array('Designation.status' => 1), 'fields' => array('Designation.name')));
+    		$departments = $this->Department->find('list', array('conditions' => array('Department.status' => 1), 'fields' => array('Department.name')));
+
+    		$this->set(compact('designations', 'departments'));
+	    		
 	    }
 
 
@@ -134,6 +142,12 @@
 	    	//converting integer to date format
 	    	$this->request->data['Employee']['date_of_birth'] = date('d-m-Y', $this->request->data['Employee']['date_of_birth']);
 	    	$this->request->data['Employee']['date_of_joining'] = date('d-m-Y', $this->request->data['Employee']['date_of_joining']);
+
+	    	
+    		$designations = $this->Designation->find('list', array('conditions' => array('Designation.status' => 1), 'fields' => array('Designation.name')));
+    		$departments = $this->Department->find('list', array('conditions' => array('Department.status' => 1), 'fields' => array('Department.name')));
+
+    		$this->set(compact('designations', 'departments'));
 	    }
 
 

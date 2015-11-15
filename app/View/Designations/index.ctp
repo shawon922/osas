@@ -3,7 +3,11 @@
     echo $this->Html->script(array('plugins/DataTables/media/js/jquery.dataTables.min'));
 ?>
 
-
+    <div class="row pull-right">
+        <?php 
+            echo $this->Html->link( '<i class="fa fa-plus"></i> Add New Designation', array('controller' => 'designations', 'action' => 'add'), array( 'class' => 'btn btn-primary add-button', 'title' => 'Add',  'escape' => false ) ); 
+        ?>
+    </div>
 
     
     <table id="designation-list" cellpadding="4" cellspacing="4" class="table table-hover table-bordered">
@@ -13,11 +17,7 @@
           <th>SL.</th>
           <th>Designation</th>
           <th>Description</th>
-          <th width="20%">
-              <?php 
-                  echo $this->Html->link( '<i class="fa fa-plus"></i> Add New Designation', array('controller' => 'designations', 'action' => 'add'), array( 'class' => 'btn btn-primary', 'title' => 'Add',  'escape' => false ) ); 
-              ?>
-          </th>
+          <th width="20%">Action</th>
         </tr>
       </thead>
       <tbody>

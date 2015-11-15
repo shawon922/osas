@@ -6,6 +6,20 @@
 		public $belongsTo = array('Designation', 'Department');
 
 		public $validate = array(
+			'employee_code' => array(
+				'notBlank' => array(
+					'rule' => 'notBlank',
+					'message' => 'Employee Code is required'
+				),
+				'between' => array(
+	                'rule' => array('lengthBetween', 3, 25),
+	                'message' => 'Between 3 to 25 characters'
+	            ),
+	            'unique' => array(
+	            	'rule' => 'isUnique',
+	            	'message' => 'Employee Code already exist'
+	            )
+			),
 			'first_name' => array(
 				'notBlank' => array(
 					'rule' => 'notBlank',

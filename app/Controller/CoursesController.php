@@ -39,7 +39,10 @@
 	    			$this->request->data['Course']['terminal'] = $this->getClientIp(); 
 
 	    			//set status. By default 1
-	    			$this->request->data['Course']['status'] = 1; 
+	    			$this->request->data['Course']['status'] = 1;
+
+	    			//get department_id from session
+	    			$this->request->data['Course']['department_id'] = $this->userInfo['department_id'];
  			
 
 	    			if ($this->Course->save($this->request->data)) {
@@ -74,7 +77,10 @@
 	    			$this->request->data['Course']['terminal'] = $this->getClientIp(); 
 
 	    			//set status. By default 1
-	    			$this->request->data['Course']['status'] = 1; 
+	    			$this->request->data['Course']['status'] = 1;
+
+	    			//get department_id from session
+	    			$this->request->data['Course']['department_id'] = $this->userInfo['department_id'];
 
 
 	    			if ($this->Course->save($this->request->data)) {

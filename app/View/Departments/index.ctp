@@ -4,7 +4,11 @@
 ?>
 
 
-
+    <div class="row pull-right">
+        <?php 
+            echo $this->Html->link( '<i class="fa fa-plus"></i> Add New Department', array('controller' => 'departments', 'action' => 'add'), array( 'class' => 'btn btn-primary add-button', 'title' => 'Add Department',  'escape' => false ) ); 
+        ?>
+    </div>
     
     <table id="department-list" cellpadding="4" cellspacing="4" class="table table-hover table-bordered">
       <thead>
@@ -15,11 +19,7 @@
           <th>Name</th>
           <th>Code</th>
           <th>Description</th>
-          <th width="20%">
-              <?php 
-                  echo $this->Html->link( '<i class="fa fa-plus"></i> Add New Department', array('controller' => 'departments', 'action' => 'add'), array( 'class' => 'btn btn-primary', 'title' => 'Add',  'escape' => false ) ); 
-              ?>
-          </th>
+          <th width="20%">Action</th>
         </tr>
       </thead>
       <tbody>

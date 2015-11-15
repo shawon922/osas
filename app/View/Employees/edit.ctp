@@ -32,6 +32,8 @@
        
             <?php 
 
+                echo $this->Form->input('Employee.employee_code', array('type' => 'text', 'label' => array('text' => 'Employee Code', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Employee Code', 'class' => 'form-control', 'autocomplete' => 'off'));
+
                 echo $this->Form->input('Employee.first_name', array('type' => 'text', 'label' => array('text' => 'First Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'First Name', 'class' => 'form-control', 'autocomplete' => 'off'));
 
                 echo $this->Form->input('Employee.last_name', array('type' => 'text', 'label' => array('text' => 'Last Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Last Name', 'class' => 'form-control', 'autocomplete' => 'off'));
@@ -58,9 +60,9 @@
                 echo $this->Form->input('Employee.date_of_joining', array('type' => 'text', 'label' => array('text' => 'Date of Joining', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'dd-mm-yyyy', 'class' => 'form-control datepicker', 'readonly' => true, 'date-data-format' => 'dd-mm-yyyy', 'data-provide'=> 'datepicker-inline'));
 
                 
-                echo $this->Form->input('Employee.designation_id', array('type' => 'select', 'label' => array('text' => 'Designation', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Designation--', 'class' => 'form-control', 'options' => array(1 => 'Dean', 2 => 'Head of Dept.', 3 => 'Professor', 4 => 'Assistant Professor', 5 => 'Lecturer')));
+                echo $this->Form->input('Employee.designation_id', array('type' => 'select', 'label' => array('text' => 'Designation', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Designation--', 'class' => 'form-control', 'options' => $designations));
 
-                echo $this->Form->input('Employee.department_id', array('type' => 'select', 'label' => array('text' => 'Department', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Department--', 'class' => 'form-control', 'options' => array(1 => 'CSE', 2 => 'BBA', 3 => 'IS', 4 => 'GP', 5 => 'Econ')));
+                echo $this->Form->input('Employee.department_id', array('type' => 'select', 'label' => array('text' => 'Department', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Department--', 'class' => 'form-control', 'options' => $departments));
 
                 echo $this->Form->input('Employee.email', array('type' => 'email', 'label' => array('text' => 'Email', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Email', 'class' => 'form-control'));
 
@@ -71,7 +73,7 @@
 
         ?>
 
-        <div class="box-footer">
+        <div class="box-footer col-md-3 col-md-offset-2" style="background-color: #ECF0F5;">
 
         <?php
 
