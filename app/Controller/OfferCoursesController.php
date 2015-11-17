@@ -1,7 +1,6 @@
 <?php
 	class OfferCoursesController extends AppController
 	{
-		
 
 		function beforeFilter() {
 	        parent::beforeFilter();
@@ -11,14 +10,19 @@
 	    public function index() {
 	    	$title_for_layout = 'Offered Course List';
 
-	    	$offered_courses = $this->OfferCourse->find('all', array('recursive' => 1, 'conditions' => array('OfferCourse.status' => 1, 'OfferCourse.semester' => 1, 'OfferCourse.year' => date('Y'))));
+	    	$offered_courses = $this->OfferCourse->find('all', array('recursive' => 1, 'conditions' => array('OfferCourse.status' => 1, 'OfferCourse.semester' => 1, 'OfferCourse.year' => date('Y')), 'order' => array('OfferCourse.user_id')));
 
-	    	pr($offered_courses); die;
+	    	//pr($offered_courses); die;
 
-	    	$this->set(compact('title_for_layout', 'courses'));
+	    	$this->request->data['OfferCourse']['semester'] = 1;
+	    	$this->request->data['OfferCourse']['year'] = 1;
+
+	    	$this->set(compact('title_for_layout', 'offered_courses'));
 	    }
 
 	    public function add() {
+	    	$years = Configure::read('semester_year');
+
 	    	$title_for_layout = 'Offer New Course';
 	    	$this->set('title_for_layout', $title_for_layout);
 
@@ -37,7 +41,7 @@
 	    			$temp_semester = $data['OfferCourse']['semester'];
 	    			unset($data['OfferCourse']['semester']);
 
-	    			$temp_year = getSemesterYear($data['OfferCourse']['year']);
+	    			$temp_year = $years[$data['OfferCourse']['year']];
 	    			unset($data['OfferCourse']['year']);
 
 	    			//pr($data); //die;

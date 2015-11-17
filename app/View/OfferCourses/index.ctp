@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-3">
             <?php 
-                echo $this->Form->input('OfferCourse.semester_id', array('type' => 'select', 'label' => false, 'empty' => '--Select Semester--', 'class' => 'form-control', 'options' => $semesters));
+                echo $this->Form->input('OfferCourse.semester', array('type' => 'select', 'label' => false, 'empty' => '--Select Semester--', 'class' => 'form-control', 'options' => $semesters));
             ?>
         </div>
         <div class="col-md-1 text-right">
@@ -53,22 +53,22 @@
       </thead>
       <tbody>
           <?php 
-              if (!empty($courses)) { 
+              if (!empty($offered_courses)) { 
                 $i = 1;
-                  foreach ($courses as $course) {
+                  foreach ($offered_courses as $course) {
            ?>
           <tr>
               <td><?php echo $i++; ?></td>
               <td><?php echo $course['Course']['code']; ?></td>
               <td><?php echo $course['Course']['name']; ?></td>
-              <td><?php echo $course['Teacher']['first_name'].' '.$course['Teacher']['first_name']; ?></td>
+              <td><?php echo $course['User']['first_name'].' '.$course['User']['last_name']; ?></td>
               <td>
                   <?php 
-                      echo $this->Html->link( '<i class="fa fa-pencil"></i>', array('controller' => 'courses', 'action' => 'edit', $course['Course']['id']), array( 'class' => 'btn btn-primary', 'title' => 'Edit',  'escape' => false ) ); 
+                      echo $this->Html->link( '<i class="fa fa-pencil"></i>', array('controller' => 'offer_courses', 'action' => 'edit', $course['OfferCourse']['id']), array( 'class' => 'btn btn-primary', 'title' => 'Edit',  'escape' => false ) ); 
 
                       echo ' ';
 
-                      echo $this->Form->postLink( '<i class="fa fa-times"></i>', array('controller' => 'courses', 'action' => 'changeStatus', $course['Course']['id'], '0'), array( 'class' => 'btn btn-primary', 'title' => 'Remove',  'escape' => false ), __('Are you sure ?'));
+                      echo $this->Form->postLink( '<i class="fa fa-times"></i>', array('controller' => 'offer_courses', 'action' => 'changeStatus', $course['OfferCourse']['id'], '0'), array( 'class' => 'btn btn-primary', 'title' => 'Remove',  'escape' => false ), __('Are you sure ?'));
 
                    ?>
               </td>
