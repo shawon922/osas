@@ -5,7 +5,7 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
 
-    public $uses = array('User', 'Role', 'Designation', 'Department', 'Employee', 'Course', 'OfferCourse', 'Student');
+    public $uses = array('User', 'Role', 'Designation', 'Department', 'Employee', 'Course', 'OfferCourse', 'OfferCourseChild', 'Student');
 	public $components = array('Session', 'Email', 'RequestHandler', 'Cookie',
 		'Auth' => array(
 			'loginRedirect' => array('controller' => 'homes', 'action' => 'index'),
@@ -109,6 +109,7 @@ class AppController extends Controller {
 		} else {
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
+        
 		return $ip;
 	}
 }

@@ -9,7 +9,11 @@
 	    }
 
 	    public function index() {
-	    	$title_for_layout = 'Course List';
+	    	$title_for_layout = 'Offered Course List';
+
+	    	$offered_courses = $this->OfferCourse->find('all', array('recursive' => 1, 'conditions' => array('OfferCourse.status' => 1, 'OfferCourse.semester' => 1, 'OfferCourse.year' => date('Y'))));
+
+	    	pr($offered_courses); die;
 
 	    	$this->set(compact('title_for_layout', 'courses'));
 	    }
@@ -22,29 +26,61 @@
 
 	    	//Checking the request is 'post' or not
 	    	if ($this->request->is('post')) { 
-	    		pr($this->request->data); die;
+	    		//pr($this->request->data); //die;
 	    		//Checking $this->request->data is empty or not
 	    		if (!empty($this->request->data)) {
-	    			//Set value for common columns
 
-	    			//get user's id from $userInfo array
-	    			$this->request->data['Course']['created_by'] = $this->userInfo['id']; 
+	    			$data = $this->request->data;
 
-	    			//First time 'modified_by' is 0 (zero)
-	    			$this->request->data['Course']['modified_by'] = 0; 
 
-	    			//get IP address of user's pc. Method is available in AppController class
-	    			$this->request->data['Course']['terminal'] = $this->getClientIp(); 
+	    			//assign semester, year into variables and unset those from $data
+	    			$temp_semester = $data['OfferCourse']['semester'];
+	    			unset($data['OfferCourse']['semester']);
 
-	    			//set status. By default 1
-	    			$this->request->data['Course']['status'] = 1; 
+	    			$temp_year = getSemesterYear($data['OfferCourse']['year']);
+	    			unset($data['OfferCourse']['year']);
+
+	    			//pr($data); //die;
+	    			
+
+	    			$temp_data = array();
+
+	    			if (!empty($data['OfferCourse'])) {
+	    				foreach ($data['OfferCourse'] as $key => $dt) { 
+
+	    					$temp_data['OfferCourse'][$key]['course_id'] = $dt['course_id'];
+	    					$temp_data['OfferCourse'][$key]['user_id'] = $dt['user_id'];
+	    					$temp_data['OfferCourse'][$key]['created_by'] = $this->userInfo['id'];
+	    					$temp_data['OfferCourse'][$key]['modified_by'] = 0;
+	    					$temp_data['OfferCourse'][$key]['terminal'] = $this->getClientIp();
+	    					$temp_data['OfferCourse'][$key]['status'] = 1;
+	    					$temp_data['OfferCourse'][$key]['semester'] = $temp_semester;
+	    					$temp_data['OfferCourse'][$key]['year'] = $temp_year;
+	    					$temp_data['OfferCourse'][$key]['department_id'] = $this->userInfo['department_id'];	    					
+	    				}
+	    			}
+
+	    			if ($data['OfferCourseChild']) {
+	    				foreach ($data['OfferCourseChild'] as $outer_key => $batch_data) {
+	    					
+	    					foreach ($batch_data['batch'] as $inner_key => $value) {
+	    						$temp_data['OfferCourse'][$outer_key]['OfferCourseChild'][$inner_key]['batch'] = $value;
+	    						$temp_data['OfferCourse'][$outer_key]['OfferCourseChild'][$inner_key]['status'] = 1;
+	    						$temp_data['OfferCourse'][$outer_key]['OfferCourseChild'][$inner_key]['created_by'] = $this->userInfo['id'];
+	    						$temp_data['OfferCourse'][$outer_key]['OfferCourseChild'][$inner_key]['modified_by'] = 0;
+	    						$temp_data['OfferCourse'][$outer_key]['OfferCourseChild'][$inner_key]['terminal'] = $this->getClientIP();
+	    					}
+	    				}
+	    			}
+
+	    			pr($temp_data); //die;
  			
 
-	    			if ($this->Course->save($this->request->data)) {
-	    				$this->Session->setFlash('Course has been saved successfully. Thank you.', 'default', array('class' => 'alert alert-success'));
-	    				$this->redirect(array('controller' => 'courses', 'action' => 'index'));
+	    			if ($this->OfferCourse->saveAll($temp_data['OfferCourse'], array('deep' => true))) {
+	    				$this->Session->setFlash('New course has been offered successfully. Thank you.', 'default', array('class' => 'alert alert-success'));
+	    				$this->redirect(array('controller' => 'offer_courses', 'action' => 'index'));
 	    			} else {	    				
-	    				$this->Session->setFlash('Course could not be saved. Try again.', 'default', array('class' => 'alert alert-danger'));
+	    				$this->Session->setFlash('New course could not be offered. Try again.', 'default', array('class' => 'alert alert-danger'));
 	    			}	    			
 	    		}
 	    	}

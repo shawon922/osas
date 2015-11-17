@@ -114,3 +114,13 @@ CakeLog::config('error', array(
 ));
 
 CakePlugin::load('DebugKit');
+
+
+function getSemesterYear($id)
+{
+	$semester_year = array(1 => date('Y'), 2 => date('Y')+1, 3 => date('Y')+2);
+
+	$year = $semester_year[$id];
+
+	return $year;
+}

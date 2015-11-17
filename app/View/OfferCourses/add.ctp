@@ -50,7 +50,7 @@
                         <?php echo $this->Form->input('OfferCourse.0.user_id', array('type' => 'select', 'empty' => '--Select Teacher--', 'class' => 'select2', 'label' => false, 'options' => $teachers)); ?>
                     </td>
                     <td>
-                        <?php echo $this->Form->input('OfferCourse.0.batch', array('type' => 'select', 'label' => false, 'class' => 'select2', 'multiple' => true, 'data-placeholder' => '--Select Batch--', 'options' => $batch, 'style' => 'min-width: 230px;')); ?>
+                        <?php echo $this->Form->input('OfferCourseChild.0.batch', array('type' => 'select', 'label' => false, 'class' => 'select2', 'multiple' => true, 'data-placeholder' => '--Select Batch--', 'options' => $batch, 'style' => 'min-width: 230px;')); ?>
                     </td>
                 </tr>
             </tbody>
