@@ -29,9 +29,20 @@
        
 
     <?php
-    echo $this->fetch('css');
-    echo $this->fetch('script');
+        echo $this->fetch('css');
+        echo $this->fetch('script');
     ?>
+
+    <style type="text/css">
+        .main-footer {
+            background: #fff none repeat scroll 0 0;
+            border-top: 1px solid #d2d6de;
+            color: #444;
+            padding: 15px;
+            transition: transform 0.3s ease-in-out 0s, margin 0.3s ease-in-out 0s;
+            margin-top: 50px; 
+        }
+    </style>
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -81,10 +92,14 @@
 
         </div> <!--Wrapper End-->
 
+        <footer class="main-footer">
+            <strong>Copyright &copy; <?php echo date('Y'); ?> OSAS.</strong> All rights reserved.
+        </footer>
+
 
 
     <?php 
-        echo $this->Html->script(array('plugins/bootstrap/bootstrap.min'));
+        echo $this->Html->script(array('plugins/bootstrap/bootstrap.min', 'plugins/datepicker/bootstrap-datepicker'));
     ?>
     
     

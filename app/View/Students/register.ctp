@@ -36,63 +36,69 @@
 
     ?>
     <div class="row">
-        <div class="box-body">
-           
-                <?php 
+        <div class="col-md-3">
 
-                    echo $this->Form->input('Student.first_name', array('type' => 'text', 'label' => array('text' => 'First Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'First Name', 'class' => 'form-control', 'autocomplete' => 'off'));
+        </div>
+        <div class="col-md-9">
+            <div class="box-body">
+               
+                    <?php 
+                        echo $this->Form->input('Student.id_no', array('type' => 'text', 'label' => array('text' => 'Student ID', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Student ID', 'class' => 'form-control', 'autocomplete' => 'off'));
 
-                    echo $this->Form->input('Student.last_name', array('type' => 'text', 'label' => array('text' => 'Last Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Last Name', 'class' => 'form-control', 'autocomplete' => 'off'));
+                        echo $this->Form->input('Student.batch', array('type' => 'text', 'label' => array('text' => 'Batch', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Batch', 'class' => 'form-control', 'autocomplete' => 'off'));
 
-                    echo $this->Form->input('Student.date_of_birth', array('type' => 'text', 'label' => array('text' => 'Date of Birth', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'dd-mm-yyyy', 'class' => 'form-control datepicker', 'readonly' => true, 'date-data-format' => 'dd-mm-yyyy', 'data-provide'=> 'datepicker-inline'));
+                        echo $this->Form->input('Student.first_name', array('type' => 'text', 'label' => array('text' => 'First Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'First Name', 'class' => 'form-control', 'autocomplete' => 'off'));
 
-                    
-                    
-                    echo '<div class="form-group"><label class="col-sm-2 control-label" for="StudentGender">Gender</label><span class="radio-group">';
-                    echo $this->Form->input("Student.gender",
-                        array(
-                        'div' => "radio inline",
-                        'separator' => '</div><div class="radio inline">',
-                        'label' => false,
-                        'type' => 'radio',
-                        'default'=>0,
-                        'legend' => false,
-                        'options' => $gender
-                        )
-                    );
+                        echo $this->Form->input('Student.last_name', array('type' => 'text', 'label' => array('text' => 'Last Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Last Name', 'class' => 'form-control', 'autocomplete' => 'off'));
 
-                    echo '</span></div>';
+                        echo $this->Form->input('Student.date_of_birth', array('type' => 'text', 'label' => array('text' => 'Date of Birth', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'dd-mm-yyyy', 'class' => 'form-control datepicker', 'readonly' => true, 'date-data-format' => 'dd-mm-yyyy', 'data-provide'=> 'datepicker-inline'));
 
-                    echo $this->Form->input('Student.date_of_joining', array('type' => 'text', 'label' => array('text' => 'Date of Joining', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'dd-mm-yyyy', 'class' => 'form-control datepicker', 'readonly' => true, 'date-data-format' => 'dd-mm-yyyy', 'data-provide'=> 'datepicker-inline'));
+                        
+                        
+                        echo '<div class="form-group"><label class="col-sm-2 control-label" for="StudentGender">Gender</label><span class="radio-group">';
+                        echo $this->Form->input("Student.gender",
+                            array(
+                            'div' => "radio inline",
+                            'separator' => '</div><div class="radio inline">',
+                            'label' => false,
+                            'type' => 'radio',
+                            'default'=>0,
+                            'legend' => false,
+                            'options' => $gender
+                            )
+                        );
 
-                    
-                    echo $this->Form->input('Student.designation_id', array('type' => 'select', 'label' => array('text' => 'Designation', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Designation--', 'class' => 'form-control', 'options' => array(1 => 'Dean', 2 => 'Head of Dept.', 3 => 'Professor', 4 => 'Assistant Professor', 5 => 'Lecturer')));
+                        echo '</span></div>';
 
-                    echo $this->Form->input('Student.department_id', array('type' => 'select', 'label' => array('text' => 'Department', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Department--', 'class' => 'form-control', 'options' => array(1 => 'CSE', 2 => 'BBA', 3 => 'IS', 4 => 'GP', 5 => 'Econ')));
+                        echo $this->Form->input('Student.date_of_admission', array('type' => 'text', 'label' => array('text' => 'Date of Admission', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'dd-mm-yyyy', 'class' => 'form-control datepicker', 'readonly' => true, 'date-data-format' => 'dd-mm-yyyy', 'data-provide'=> 'datepicker-inline'));
 
-                    echo $this->Form->input('Student.email', array('type' => 'email', 'label' => array('text' => 'Email', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Email', 'class' => 'form-control'));
+                        
+                        echo $this->Form->input('Student.department_id', array('type' => 'select', 'label' => array('text' => 'Department', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Department--', 'class' => 'form-control', 'options' => $departments));
 
-                    echo $this->Form->input('Student.contact_no', array('type' => 'text', 'label' => array('text' => 'Contact No.', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Contact No.', 'class' => 'form-control', 'autocomplete' => 'off'));
+                        echo $this->Form->input('Student.email', array('type' => 'email', 'label' => array('text' => 'Email', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Email', 'class' => 'form-control'));
 
-                    echo $this->Form->input('Student.address', array('type' => 'textarea', 'label' => array('text' => 'Address', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Address', 'class' => 'form-control', 'autocomplete' => 'off'));
-                    
+                        echo $this->Form->input('Student.contact_no', array('type' => 'text', 'label' => array('text' => 'Contact No.', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Contact No.', 'class' => 'form-control', 'autocomplete' => 'off'));
 
-            ?>
+                        echo $this->Form->input('Student.address', array('type' => 'textarea', 'label' => array('text' => 'Address', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Address', 'class' => 'form-control', 'autocomplete' => 'off'));
+                        
 
-            <div class="box-footer">
+                ?>
 
-            <?php
+                <div class="box-footer col-md-4 col-md-offset-2" style="">
 
-                echo $this->Form->button('Save', array('type' => 'submit', 'class' => 'btn btn-primary'));
+                <?php
 
-                echo ' ';
+                    echo $this->Form->button('Save', array('type' => 'submit', 'class' => 'btn btn-primary'));
 
-                echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'btn btn-warning'));
+                    echo ' ';
 
-                echo ' ';
+                    echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'btn btn-warning'));
 
-                echo $this->Form->button('Cancel', array('type' => 'button', 'class' => 'btn btn-danger'));
-            ?>
+                    echo ' ';
+
+                    echo $this->Form->button('Cancel', array('type' => 'button', 'class' => 'btn btn-danger'));
+                ?>
+                </div>
             </div>
         </div>
     </div>
@@ -100,11 +106,6 @@
 
     <?php
         echo $this->Form->end();
-    ?>
-
-
-    <?php 
-        echo $this->Html->script(array('plugins/datepicker/bootstrap-datepicker'));
     ?>
 
 

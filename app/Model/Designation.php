@@ -1,7 +1,7 @@
 <?php
 	class Designation extends AppModel
 	{
-		public $hasMany = array();
+		public $hasMany = array('Employee');
 		public $belongsTo = array();
 
 		public $validate = array(
