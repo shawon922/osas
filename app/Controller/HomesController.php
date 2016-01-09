@@ -11,7 +11,8 @@
 	    public function index() {
 
 	    	$title_for_layout = 'Home Page';
-	    	
-	    	$this->set(compact(array('title_for_layout')));
+	    	$departments = $this->Department->find('list', array('conditions' => array('Department.status' => 1), 'fields' => array('Department.id', 'Department.name')));
+
+	    	$this->set(compact(array('title_for_layout', 'departments')));
 	    }	    
 	}
