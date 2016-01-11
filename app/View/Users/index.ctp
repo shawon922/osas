@@ -5,21 +5,22 @@
 
 
 
-    
+    <div class="row pull-right">
+        
+        <?php 
+            echo $this->Html->link( '<i class="fa fa-plus"></i> New User', array('controller' => 'users', 'action' => 'add'), array( 'class' => 'btn btn-primary add-button', 'title' => 'Click here to add new user',  'escape' => false, 'data-toggle' => 'tooltip', 'data-placement' => 'top') ); 
+        ?>
+    </div>
+
     <table id="user-list" cellpadding="4" cellspacing="4" class="table table-hover table-bordered">
       <thead>
-
         <tr>
           <th>SL.</th>
           <th>Name</th>
           <th>Email</th>
           <th>Contact No.</th>
           <th>Username</th>
-          <th width="15%">
-              <?php 
-                  echo $this->Html->link( '<i class="fa fa-plus"></i>', array('controller' => 'users', 'action' => 'add'), array( 'class' => 'btn btn-primary', 'title' => 'Add',  'escape' => false ) ); 
-              ?>
-          </th>
+          <th width="15%"></th>
         </tr>
       </thead>
       <tbody>

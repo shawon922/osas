@@ -1,9 +1,10 @@
 <?php
 
 App::uses('Controller', 'Controller');
-
+/*App::uses('DataTableRequestHandlerTrait', 'DataTable.Lib');*/
 
 class AppController extends Controller {
+    /*use DataTableRequestHandlerTrait;*/
 
     public $uses = array('User', 'Role', 'Designation', 'Department', 'Employee', 'Course', 'OfferCourse', 'OfferCourseChild', 'Student');
 	public $components = array('Session', 'Email', 'RequestHandler', 'Cookie',
@@ -17,7 +18,17 @@ class AppController extends Controller {
 				)
 			)
 		), 
-		'DebugKit.Toolbar'
+		'DebugKit.Toolbar',
+        /*'DataTable.DataTable' => [
+            'User' => [
+                'columns' => [
+                    'id',
+                    'username',
+                    'email',
+                    'Actions' => null,
+                ],
+            ],
+        ],*/
 	);
 
 
@@ -25,15 +36,18 @@ class AppController extends Controller {
         'Html', 'Form', 'Session',
         'Form'=> array('className'=> 'MyForm'),
         'Js' => array('Jquery'), 
-        'Time', 'Cache', 'Text'
+        'Time', 'Cache', 'Text',
+        /*'DataTable.DataTable'*/
     );
 
     public $userInfo = 0;
+    protected $departmentId = 0;
 
     public function beforeFilter()
     {
     	parent::beforeFilter();
     	Configure::load('constant');
+
 
         if (!empty($this->Auth->user())) { 
             $this->Session->write('USER_INFO', $this->Auth->user());
@@ -47,8 +61,18 @@ class AppController extends Controller {
     	$this->userInfo = $this->Session->read('USER_INFO');
     	$userInfo = $this->userInfo;
 
+        $cont = strtolower($this->params['controller']);
+        $act = strtolower($this->params['action']);
+        //pr($this->params);
+        if (empty($this->Session->read('DEPT_ID')) && ($cont != 'homes' && ($cont != 'users' && $act != 'login'))) {
+            $this->redirect(array('controller' => 'homes', 'action' => 'index'));
+        } else {
+            $this->departmentId = $this->Session->read('DEPT_ID');
+            $departmentId = $this->departmentId;
+        }
+
     	//pr($userInfo); die;
-    	$this->set(compact('userInfo', 'messages'));
+    	$this->set(compact('userInfo', 'messages', 'departmentId'));
     }
 
     function beforeRender() {
@@ -85,6 +109,28 @@ class AppController extends Controller {
     	}
     	return false;
 	}
+
+    public function getAllBatch()
+    {
+        
+    }
+
+    public function getCurrentSemester()
+    {
+        $semester = null;
+
+        $month = date('n');
+
+        if ($month >= 1 || $month <= 4) {
+            $semester = 1;
+        } elseif ($month >= 5 || $month <= 8) {
+            $semester = 2;
+        } else {
+            $semester = 3;
+        }
+
+        return $semester;
+    }
 
 
     public function remove_all_cookies() 

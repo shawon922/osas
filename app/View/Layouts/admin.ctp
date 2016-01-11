@@ -19,18 +19,17 @@
     <?php 
         echo $this->Html->script(array('plugins/jQuery/jQuery-2.1.4.min', 'plugins/jQueryUI/jquery-ui.min'));
     ?>
-<script type="text/javascript">
-    window.history.forward();
-    
+<script type="text/javascript">    
+    window.history.forward();    
     function noBack() { 
-        window.history.forward(); 
+        //window.history.forward(); 
     }
 </script>
        
 
     <?php
-    echo $this->fetch('css');
-    echo $this->fetch('script');
+        echo $this->fetch('css');
+        echo $this->fetch('script');
     ?>
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
