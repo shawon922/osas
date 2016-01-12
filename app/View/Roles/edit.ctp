@@ -1,15 +1,34 @@
-<h4 class="widgettitle"><?php echo $title_for_layout; ?></h4>
-<div class="widgetcontent bordered shadowed nopadding">
-	<?php  
-		$lang = $this->Session->read('lang');
-		echo $this->Form->create('Role', array( 'role' => 'form', 'class' => 'stdform stdform2' ) ); 
-		echo $this->Form->input( 'name', array( 'autocomplete' => 'off', 'required'=> false, 'label'=> array( 'text'=>'নাম*', 'class'=>'rad_star' ) )); 
-		echo $this->Form->input( 'name_en', array( 'autocomplete' => 'off', 'required'=> false, 'label'=> array( 'text'=>'Name*', 'class'=>'rad_star' )  ) ); 
-		
-		echo '<p class="stdformbutton">';
-		echo $this->Form->button(($lang==1) ? ' হালনাগাদ করুন ' :'Update', array('type' => 'submit', 'class' => 'btn btn-primary'));
-		echo $this->Form->button(($lang==1) ? ' বন্ধ করুন ' : 'Cancel', array('type' => 'button', 'class' => 'btn btn-primary margin-left-5','onclick'=>'cancel(\'Roles\')'));
-		echo '</p>';
-		echo $this->Form->end();
-	?>
-</div>
+    <?php 
+        
+        echo $this->Form->create('Role', array('class' => 'form-horizontal', 'novalidate' => true));
+
+    ?>
+    <div class="box-body">
+       
+            <?php 
+                echo $this->Form->input('Role.name', array('type' => 'text', 'label' => array('text' => 'Role Name', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Role Name', 'class' => 'form-control', 'autocomplete' => 'off'));
+
+        ?>
+
+        <div class="box-footer col-md-3 col-md-offset-2" style="background-color: #ECF0F5;">
+
+        <?php
+
+            echo $this->Form->button('Edit', array('type' => 'submit', 'class' => 'btn btn-primary'));
+
+            echo ' ';
+
+            echo $this->Form->button('Reset', array('type' => 'reset', 'class' => 'btn btn-warning'));
+
+            echo ' ';
+
+            echo $this->Form->button('Cancel', array('type' => 'button', 'class' => 'btn btn-danger'));
+        ?>
+        </div>
+    </div>
+
+
+    <?php
+        echo $this->Form->end();
+    ?>
+

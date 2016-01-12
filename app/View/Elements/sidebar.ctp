@@ -1,3 +1,16 @@
+<style type="text/css">
+    .menu-open li.current-li {
+        background-color: #225922;
+    }
+
+    .sidebar-menu li a, .sidebar-menu .treeview-menu > li > a {
+        font-size: 16px;
+    }
+
+
+</style>
+
+
 <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -97,3 +110,44 @@
     </section>
     <!-- /.sidebar -->
 </aside>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var i=0;
+        $(document).find("ul.unique-left-menu > li").each(function(){
+            i++;
+            if ( i<3 ) return;
+            var cnt = $(this).find("ul").children().length;
+            if (cnt <= 0) {
+                $(this).remove();
+            }
+        });
+
+        var webroot = "<?php echo $this->webroot; ?>";
+        var controller = "<?php echo $this->params['controller']; ?>";
+        var action = "<?php echo $this->params['action']; ?>";
+
+        if (action == "changePass") {
+            url = webroot+controller+"/"+action;
+        } else {
+            url = webroot+controller;
+        }
+
+
+        /*console.log(url);
+        console.log(controller);
+        console.log(action);*/
+
+        $("ul.sidebar-menu li ul li a").each(function() {
+            if ($(this).attr("href") == url || $(this).attr("href") == '' ) { 
+                console.log($(this).parent("ul"));
+                $(this).parent().parent().parent().addClass("active");
+                $(this).parent().addClass("current-li");
+                $(this).parent().parent().addClass("menu-open");
+                $(this).parent().parent().css({'display': 'block'});
+            }
+
+        })
+    });
+</script>

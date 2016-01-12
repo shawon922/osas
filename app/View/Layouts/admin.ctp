@@ -19,12 +19,6 @@
     <?php 
         echo $this->Html->script(array('plugins/jQuery/jQuery-2.1.4.min', 'plugins/jQueryUI/jquery-ui.min'));
     ?>
-<script type="text/javascript">    
-    window.history.forward();    
-    function noBack() { 
-        //window.history.forward(); 
-    }
-</script>
        
 
     <?php
@@ -39,7 +33,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="" class="hold-transition skin-blue layout-boxed sidebar-mini">
+<body class="hold-transition skin-blue layout-boxed sidebar-mini">
         <!-- Wrapper Start -->
         <div class="wrapper">
 

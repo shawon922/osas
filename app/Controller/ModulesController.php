@@ -76,9 +76,6 @@ class ModulesController extends AppController {
 
             //Set value for common columns
 
-            //It's important to assign primary key into array
-            $this->request->data['Module']['id'] = $id; 
-
             //First time 'modified_by' is 0 (zero)
             $this->request->data['Module']['modified_by'] = $this->userInfo['id']; 
 

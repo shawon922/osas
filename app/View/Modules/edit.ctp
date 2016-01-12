@@ -17,7 +17,7 @@
 
         <?php
 
-            echo $this->Form->button('Save', array('type' => 'submit', 'class' => 'btn btn-primary'));
+            echo $this->Form->button('Edit', array('type' => 'submit', 'class' => 'btn btn-primary'));
 
             echo ' ';
 
