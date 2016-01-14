@@ -11,7 +11,7 @@
     <?php
     echo $this->Html->meta('icon');
 
-    echo $this->Html->css(array('bootstrap/bootstrap.min', 'font-awesome-4.4.0/css/font-awesome.min', 'ionicons-2.0.1/css/ionicons.min', '../js/plugins/jvectormap/jquery-jvectormap-1.2.2', 'AdminLTE.min', 'skins/_all-skins.min', '../js/plugins/iCheck/flat/blue', '../js/plugins/morris/morris', '../js/plugins/datepicker/datepicker3', '../js/plugins/daterangepicker/daterangepicker-bs3', '../js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min', 'style'));
+    echo $this->Html->css(array('bootstrap/bootstrap.min', 'font-awesome-4.4.0/css/font-awesome.min', 'ionicons-2.0.1/css/ionicons.min', /*'../js/plugins/jvectormap/jquery-jvectormap-1.2.2',*/ 'AdminLTE.min', 'skins/_all-skins.min', '../js/plugins/iCheck/flat/blue', /*'../js/plugins/morris/morris',*/ '../js/plugins/datepicker/datepicker3', /*'../js/plugins/daterangepicker/daterangepicker-bs3','../js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',*/  'style'));
 
     echo $this->fetch('meta');
     ?>
@@ -77,7 +77,7 @@
     </script>
 
     <?php 
-        echo $this->Html->script(array('plugins/bootstrap/bootstrap.min', 'raphael-min', 'plugins/sparkline/jquery.sparkline.min', 'plugins/sparkline/jquery.sparkline.min', 'plugins/jvectormap/jquery-jvectormap-1.2.2.min', 'plugins/jvectormap/jquery-jvectormap-world-mill-en', 'plugins/knob/jquery.knob', 'moment.min', 'plugins/daterangepicker/daterangepicker', 'plugins/datepicker/bootstrap-datepicker', 'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min', 'plugins/slimScroll/jquery.slimscroll.min', 'plugins/fastclick/fastclick.min', 'AdminLTE/app.min', 'AdminLTE/demo'));
+        echo $this->Html->script(array('plugins/bootstrap/bootstrap.min', /*'raphael-min', 'plugins/sparkline/jquery.sparkline.min', 'plugins/sparkline/jquery.sparkline.min', 'plugins/jvectormap/jquery-jvectormap-1.2.2.min', 'plugins/jvectormap/jquery-jvectormap-world-mill-en', 'plugins/knob/jquery.knob', 'moment.min', 'plugins/daterangepicker/daterangepicker',*/ 'plugins/datepicker/bootstrap-datepicker', /*'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min',*/ 'plugins/slimScroll/jquery.slimscroll.min', /*'plugins/fastclick/fastclick.min',*/ 'AdminLTE/app.min', 'AdminLTE/demo'));
     ?>
     
     

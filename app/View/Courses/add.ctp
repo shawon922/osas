@@ -5,7 +5,7 @@
     ?>
     <div class="box-body">
        
-            <?php 
+            <?php                 
 
                 echo $this->Form->input('Course.code', array('type' => 'text', 'label' => array('text' => 'Course Code', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Course Code', 'class' => 'form-control', 'autocomplete' => 'off'));
 
@@ -13,6 +13,8 @@
 
 
                 echo $this->Form->input('Course.credit', array('type' => 'text', 'label' => array('text' => 'Course Credit', 'class' => 'col-sm-2 control-label'), 'placeholder' => 'Course Credit', 'class' => 'form-control', 'autocomplete' => 'off'));
+
+                echo $this->Form->input('Course.department_id', array('type' => 'select', 'label' => array('text' => 'Department', 'class' => 'col-sm-2 control-label'), 'empty' => '--Select Department--', 'class' => 'form-control', 'options' => $departments));
 
         ?>
 

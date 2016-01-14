@@ -2,7 +2,7 @@
 	class Course extends AppModel
 	{
 		public $hasMany = array('OfferCourse');
-		public $belongsTo = array();
+		public $belongsTo = array('Department');
 
 		public $validate = array(
 			

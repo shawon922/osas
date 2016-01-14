@@ -37,11 +37,11 @@
               <td><?php echo (!empty($department['Department']['description'])) ? $department['Department']['description'] : 'N/A'; ?></td>
               <td>
                   <?php 
-                      echo $this->Html->link( '<i class="fa fa-pencil"></i>', array('controller' => 'departments', 'action' => 'edit', $department['Department']['id']), array( 'class' => 'btn btn-primary', 'title' => 'Edit',  'escape' => false ) ); 
+                      echo $this->Html->link( '<i class="fa fa-pencil"></i> Edit', array('controller' => 'departments', 'action' => 'edit', $department['Department']['id']), array( 'class' => 'btn btn-primary', 'title' => 'Edit',  'escape' => false ) ); 
 
                       echo ' ';
 
-                      echo $this->Form->postLink( '<i class="fa fa-times"></i>', array('controller' => 'departments', 'action' => 'changeStatus', $department['Department']['id'], '0'), array( 'class' => 'btn btn-primary', 'title' => 'Remove',  'escape' => false ), __('Are you sure ?'));
+                      echo $this->Form->postLink( '<i class="fa fa-times"></i> Remove', array('controller' => 'departments', 'action' => 'changeStatus', $department['Department']['id'], '0'), array( 'class' => 'btn btn-primary', 'title' => 'Remove',  'escape' => false ), __('Are you sure ?'));
 
                    ?>
               </td>

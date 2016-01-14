@@ -18,6 +18,7 @@
           <th>Course Code</th>
           <th>Course Name</th>
           <th>Credit</th>
+          <th>Department</th>
           <th width="20%">Action</th>
         </tr>
       </thead>
@@ -32,13 +33,14 @@
               <td><?php echo $course['Course']['code']; ?></td>
               <td><?php echo $course['Course']['name']; ?></td>
               <td><?php echo $course['Course']['credit']; ?></td>
+              <td><?php echo $course['Department']['name']; ?></td>
               <td>
                   <?php 
-                      echo $this->Html->link( '<i class="fa fa-pencil"></i>', array('controller' => 'courses', 'action' => 'edit', $course['Course']['id']), array( 'class' => 'btn btn-primary', 'title' => 'Edit',  'escape' => false ) ); 
+                      echo $this->Html->link( '<i class="fa fa-pencil"></i> Edit', array('controller' => 'courses', 'action' => 'edit', $course['Course']['id']), array( 'class' => 'btn btn-primary', 'title' => 'Edit',  'escape' => false ) ); 
 
                       echo ' ';
 
-                      echo $this->Form->postLink( '<i class="fa fa-times"></i>', array('controller' => 'courses', 'action' => 'changeStatus', $course['Course']['id'], '0'), array( 'class' => 'btn btn-primary', 'title' => 'Remove',  'escape' => false ), __('Are you sure ?'));
+                      echo $this->Form->postLink( '<i class="fa fa-times"></i> Remove', array('controller' => 'courses', 'action' => 'changeStatus', $course['Course']['id'], '0'), array( 'class' => 'btn btn-primary', 'title' => 'Remove',  'escape' => false ), __('Are you sure ?'));
 
                    ?>
               </td>

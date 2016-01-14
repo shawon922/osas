@@ -9,9 +9,9 @@
 	    }
 
 	    public function index() {
-
-	    	$courses = $this->Course->find('all', array('conditions' => array('Course.status' => 1)));
-
+	    	$this->Course->unbindModel(array('hasMany' => array('OfferCourse')));
+	    	$courses = $this->Course->find('all', array('conditions' => array('Course.status' => 1), 'recursive' => 1));
+	    	
 	    	$title_for_layout = 'Course List';
 
 	    	$this->set(compact(array('title_for_layout', 'courses')));
@@ -42,7 +42,7 @@
 	    			$this->request->data['Course']['status'] = 1;
 
 	    			//get department_id from session
-	    			$this->request->data['Course']['department_id'] = $this->userInfo['department_id'];
+	    			//$this->request->data['Course']['department_id'] = $this->userInfo['department_id'];
  			
 
 	    			if ($this->Course->save($this->request->data)) {
@@ -50,9 +50,15 @@
 	    				$this->redirect(array('controller' => 'courses', 'action' => 'index'));
 	    			} else {	    				
 	    				$this->Session->setFlash('Course could not be saved. Try again.', 'default', array('class' => 'alert alert-danger'));
-	    			}	    			
+	    			}	    			    			
 	    		}
+
 	    	}
+
+	    	$departments = $this->Department->find('list', array('conditions' => array('Department.status' => 1), 'fields' => array('Department.name')));
+
+	    	$this->set(compact('departments'));
+
 	    }
 
 
@@ -80,7 +86,7 @@
 	    			$this->request->data['Course']['status'] = 1;
 
 	    			//get department_id from session
-	    			$this->request->data['Course']['department_id'] = $this->userInfo['department_id'];
+	    			//$this->request->data['Course']['department_id'] = $this->userInfo['department_id'];
 
 
 	    			if ($this->Course->save($this->request->data)) {
@@ -94,6 +100,10 @@
 	    	}
 
 	    	$this->request->data = $this->Course->find('first', array('conditions' => array('Course.id' => $id, 'Course.status' => 1)));
+
+	    	$departments = $this->Department->find('list', array('conditions' => array('Department.status' => 1), 'fields' => array('Department.name')));
+
+	    	$this->set(compact('departments'));
 	    }
 
 

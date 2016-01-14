@@ -17,7 +17,10 @@
 	    	$this->request->data['OfferCourse']['semester'] = 1;
 	    	$this->request->data['OfferCourse']['year'] = 1;
 
-	    	$this->set(compact('title_for_layout', 'offered_courses'));
+	    	$departments = $this->Department->find('list', array('conditions' => array('Department.status' => 1), 'fields' => array('Department.name')));
+
+
+	    	$this->set(compact('title_for_layout', 'offered_courses', 'departments'));
 	    }
 
 	    public function add() {
@@ -44,6 +47,9 @@
 	    			$temp_year = $years[$data['OfferCourse']['year']];
 	    			unset($data['OfferCourse']['year']);
 
+	    			$temp_dept = $data['OfferCourse']['department_id'];
+	    			unset($data['OfferCourse']['department_id']);
+
 	    			//pr($data); //die;
 	    			
 
@@ -60,7 +66,7 @@
 	    					$temp_data['OfferCourse'][$key]['status'] = 1;
 	    					$temp_data['OfferCourse'][$key]['semester'] = $temp_semester;
 	    					$temp_data['OfferCourse'][$key]['year'] = $temp_year;
-	    					$temp_data['OfferCourse'][$key]['department_id'] = $this->userInfo['department_id'];	    					
+	    					$temp_data['OfferCourse'][$key]['department_id'] = $temp_dept;	    					
 	    				}
 	    			}
 
@@ -77,7 +83,7 @@
 	    				}
 	    			}
 
-	    			//pr($temp_data); //die;
+	    			//pr($temp_data); die;
  			
 
 	    			if ($this->OfferCourse->saveAll($temp_data['OfferCourse'], array('deep' => true))) {
@@ -113,8 +119,10 @@
 	    		}
 	    	}
 
+	    	$departments = $this->Department->find('list', array('conditions' => array('Department.status' => 1), 'fields' => array('Department.name')));
 
-	    	$this->set(compact('courses', 'teachers'));
+
+	    	$this->set(compact('courses', 'teachers', 'departments'));
 	    }
 
 
@@ -142,6 +150,10 @@
 	    			$temp_year = $years[$data['OfferCourse']['year']];
 	    			unset($data['OfferCourse']['year']);
 
+	    			$temp_dept = $data['OfferCourse']['department_id'];
+	    			unset($data['OfferCourse']['department_id']);
+	    			
+
 	    			//pr($data); //die;
 	    			
 
@@ -155,7 +167,7 @@
 					$temp_data['OfferCourse']['status'] = 1;
 					$temp_data['OfferCourse']['semester'] = $temp_semester;
 					$temp_data['OfferCourse']['year'] = $temp_year;
-					$temp_data['OfferCourse']['department_id'] = $this->userInfo['department_id'];	    					
+					$temp_data['OfferCourse']['department_id'] = $temp_dept;	    					
 	    				
 	    			
 	    			if (!empty($data['OfferCourseChild']['batch'])) {
@@ -217,9 +229,12 @@
 	    		}
 	    	}
 
-	    	pr($this->request->data); //die;
+	    	pr($this->request->data); die;
 
-	    	$this->set(compact('courses', 'teachers'));
+	    	$departments = $this->Department->find('list', array('conditions' => array('Department.status' => 1), 'fields' => array('Department.name')));
+
+
+	    	$this->set(compact('courses', 'teachers', 'departments'));
 	    }
 
 

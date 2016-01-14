@@ -8,11 +8,18 @@
     <?php echo $this->Form->create('OfferCourse', array('class' => 'form-inline', 'novalidate' => true)); ?>
 
     <div class="row" style="margin-bottom: 50px;">
-        <div class="col-md-1"></div>
+        <div class="col-md-1 text-right">
+            <label>Department</label>
+        </div>
+        <div class="col-md-4">
+            <?php 
+                echo $this->Form->input('OfferCourse.department_id', array('type' => 'select', 'label' => false, 'empty' => '--Select Department--', 'class' => 'form-control', 'options' => $departments));
+            ?>
+        </div>
         <div class="col-md-1 text-right">
             <label>Semester</label>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <?php 
                 echo $this->Form->input('OfferCourse.semester', array('type' => 'select', 'label' => false, 'empty' => '--Select Semester--', 'class' => 'form-control', 'options' => $semesters));
             ?>
@@ -20,7 +27,7 @@
         <div class="col-md-1 text-right">
             <label>Year</label>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <?php 
                 echo $this->Form->input('OfferCourse.year', array('type' => 'select', 'label' => false, 'empty' => '--Select Year--', 'class' => 'form-control', 'options' => $years, 'value' => 1));
             ?>

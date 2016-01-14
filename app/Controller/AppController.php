@@ -6,7 +6,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
     /*use DataTableRequestHandlerTrait;*/
 
-    public $uses = array('User', 'Role', 'Designation', 'Department', 'Employee', 'Course', 'OfferCourse', 'OfferCourseChild', 'Student');
+    public $uses = array('User', 'Role', 'Privilege', 'Designation', 'Department', 'Employee', 'Course', 'OfferCourse', 'OfferCourseChild', 'Student');
 	public $components = array('Session', 'Email', 'RequestHandler', 'Cookie',
 		'Auth' => array(
 			'loginRedirect' => array('controller' => 'homes', 'action' => 'index'),
@@ -42,6 +42,8 @@ class AppController extends Controller {
 
     public $userInfo = 0, $roleId = 0;
     protected $departmentId = 0;
+    protected $allowedActions = array();
+    
 
     public function beforeFilter()
     {
@@ -91,6 +93,8 @@ class AppController extends Controller {
             }
         }*/
 
+        Configure::write( 'USER_ROLE', $this->Role->find( 'list' , array('fields'=> array('Role.id','Role.name')) ) );
+
         $messages = $this->User->find('all', array('conditions' => array('User.status' => 1), 'fields' => array('User.first_name', 'User.last_name', 'User.email', 'User.created'), 'order' => array('User.created DESC')));
 
 
@@ -130,16 +134,22 @@ class AppController extends Controller {
             
             default:
             
-                $role_status = $this->Role->find('first', array('conditions'=>array('Role.id'=> $user['role_id']), 'fields'=>'Role.status'));
-                
-                if ($role_status['Role']['status'] == 0) {
-                    return $this->redirect($this->Auth->logout());
-                } else if( (bool)(in_array("{$this->request->action}", $this->allowedActions[$user['role_id']])) === false ) {
-                    return $this->redirect($this->Auth->logout());
+                /*$role_status = $this->Role->find('first', array('conditions'=>array('Role.id'=> $user['role_id']), 'fields'=>'Role.status'));
+                if (!empty($role_status)) {
+                    if ($role_status['Role']['status'] == 0) {
+                        return $this->redirect($this->Auth->logout());
+                    } else if( (bool)(in_array("{$this->request->action}", $this->allowedActions[$user['role_id']])) === false ) {
+                        return $this->redirect($this->Auth->logout());
+                    } else {
+                        return true;
+                    }
                 } else {
-                    return true;
-                }
+                    return $this->redirect($this->Auth->logout());
+                }*/
+                return true;
+                
         }
+
         return false;
 	}
 
@@ -212,18 +222,19 @@ class AppController extends Controller {
             )
         ));
 
-        $rtrPrivileges['add'] = (!empty($privileges['Privilege']['create'])) ? $privileges['Privilege']['create'] : 0;
-        $rtrPrivileges['index'] = (!empty($privileges['Privilege']['read'])) ? $privileges['Privilege']['read'] : 0;
+        $rtrPrivileges['add'] = (!empty($privileges['Privilege']['can_create'])) ? $privileges['Privilege']['can_create'] : 0;
+        $rtrPrivileges['index'] = (!empty($privileges['Privilege']['can_read'])) ? $privileges['Privilege']['can_read'] : 0;
         $rtrPrivileges['manage'] = $rtrPrivileges['index'];
-        $rtrPrivileges['edit'] = (!empty($privileges['Privilege']['update'])) ? $privileges['Privilege']['update']: 0;
-        $rtrPrivileges['delete'] = (!empty($privileges['Privilege']['delete'])) ? $privileges['Privilege']['delete']: 0;
-        $rtrPrivileges['status'] = (!empty($privileges['Privilege']['status'])) ? $privileges['Privilege']['status']: 0;
+        $rtrPrivileges['edit'] = (!empty($privileges['Privilege']['can_update'])) ? $privileges['Privilege']['can_update']: 0;
+        $rtrPrivileges['delete'] = (!empty($privileges['Privilege']['can_delete'])) ? $privileges['Privilege']['can_delete']: 0;
+        $rtrPrivileges['status'] = (!empty($privileges['Privilege']['can_status'])) ? $privileges['Privilege']['can_status']: 0;
         $rtrPrivileges['search'] = 1;
         $rtrPrivileges['view'] = 1;
         $rtrPrivileges['changeStatus'] = 1;
         return $rtrPrivileges;
     }
     
+    /*
     protected function getPrivilegeUsers( $controller )
     {
         $module_name = Inflector::singularize($controller);
@@ -254,7 +265,7 @@ class AppController extends Controller {
         $rtrPrivileges['changeStatus'] = 1;
         return $rtrPrivileges;
     }
-    
+    */
     //======================================================
     // 
     //======================================================
@@ -262,10 +273,6 @@ class AppController extends Controller {
     function getPrivilegeIds( $mid = null ) 
     {
         $privileges = $rsPrivileges = array();
-        //$conditions = array("Privilege.status"=> 1, "Privilege.role_id"=> $this->roleId);
-        //$conditions[] = "Privilege.status = 1";
-        //$conditions[] = "Privilege.module_id = $mid";
-        //$conditions[] = "Privilege.role_id = ".$user["role_id"];
         
         $privilegeUsers = $this->PrivilegeUser->find('first', array('conditions' => array(
                 'PrivilegeUser.user_id'=> $this->userId, 
