@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-3">
             <?php 
-                echo $this->Form->input('OfferCourse.department_id', array('type' => 'select', 'label' => false, 'empty' => '--Select Department--', 'class' => 'form-control', 'options' => $departments, 'span' => false, 'style' => 'min-width: 230px;'));
+                echo $this->Form->input('OfferCourse.department_id', array('type' => 'select', 'label' => false, 'empty' => '--Select Department--', 'class' => 'form-control', 'id' => 'dept-id' 'options' => $departments, 'span' => false, 'style' => 'min-width: 230px;'));
             ?>
         </div>
         <div class="col-md-1 text-right">
@@ -101,6 +101,13 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $(".select2").select2();
+
+            $(document).on('change', 'dept-id', function() { 
+                url = "<?php echo $this->webroot.'offer_courses/getSubTe' ?>";
+                $.ajax({
+
+                });
+            });
         });
 
         $(document).ready(function() { 
